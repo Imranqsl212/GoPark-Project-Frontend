@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuthentication from "../../additionals/CheckAuth.js";
+import Notification from "../../components/Notification/Notifications.jsx";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [notification, setNotification] = useState(null);
+  const [key, setKey] = useState(1);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -31,18 +34,43 @@ const Register = () => {
         access: response.data.access,
         refresh: response.data.refresh,
       };
+
       localStorage.setItem("tokens", JSON.stringify(tokens));
       console.log("Registration successful:", response.data);
+      
+      setNotification({
+        type: "promise",
+        text: "Registration successful!",
+      });
+
+      checkAuthentication();
+
+      await new Promise((resolve) => setTimeout(resolve, 2000)); 
+
+      navigate("/");
+
       checkAuthentication();
       return navigate("/");
     } catch (error) {
       console.error("Error during registration:", error.response.data);
+      setNotification({
+        type: "error",
+        text: "Error during registration. Please try again.",
+      });
+      setKey(key + 1);
     }
   };
 
   return (
     <div>
       <h1>Register</h1>
+      {notification && (
+        <Notification
+          type={notification.type}
+          text={notification.text}
+          count={key}
+        />
+      )}
       <form onSubmit={handleFormSubmit}>
         <label>
           Username:
@@ -85,7 +113,6 @@ const Register = () => {
         >
           Login
         </button>
-
 
         <button
           onClick={() => {

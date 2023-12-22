@@ -1,4 +1,3 @@
-
 import useAuthentication from "../../additionals/CheckAuth.js";
 const Home = () => {
   const { checkAuthentication } = useAuthentication();
