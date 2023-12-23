@@ -1,30 +1,60 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Notification from "../../../components/Notification/Notifications.jsx";
 
 const OTPVerificationPage = () => {
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
   const navigate = useNavigate();
+  const [notification, setNotification] = useState(null);
+  const [key, setKey] = useState(1);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const email = localStorage.getItem('email');
-      const response = await axios.post('https://defteam.onrender.com/api-auth/check_otp/', { email:email, otp:otp });
+      const email = localStorage.getItem("email");
+      const response = await axios.post(
+        "https://defteam.onrender.com/api-auth/check_otp/",
+        { email: email, otp: otp }
+      );
       if (response.status === 200) {
-        return navigate('/reset-password');
+        setNotification({
+          type: "success",
+          text: "OTP entered successful!",
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        return navigate("/reset-password");
       }
     } catch (error) {
-      console.error('Error verifying OTP:', error);
+      setNotification({
+        type: "error",
+        text: "Invalid OTP entered",
+      });
+
+      setKey(key + 1);
     }
   };
 
   return (
     <div>
+      {notification && (
+        <Notification
+          type={notification.type}
+          text={notification.text}
+          count={key}
+        />
+      )}
       <h1>OTP Verification</h1>
       <form onSubmit={handleSubmit}>
         <label>OTP:</label>
-        <input type="text" value={otp} onChange={(e) => setOtp(e.target.value)} required />
+        <input
+          type="text"
+          value={otp}
+          onChange={(e) => setOtp(e.target.value)}
+          required
+        />
         <button type="submit">Verify OTP</button>
       </form>
     </div>

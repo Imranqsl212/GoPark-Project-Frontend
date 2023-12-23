@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Notification from "../../../components/Notification/Notifications.jsx";
 
 const PasswordResetPage = () => {
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
+  const [notification, setNotification] = useState(null);
+  const [key, setKey] = useState(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,16 +24,35 @@ const PasswordResetPage = () => {
       if (response.status === 200) {
         console.log(response.data.message);
         localStorage.removeItem("email");
+        setNotification({
+          type: "success",
+          text: "Password reseted successfuly!",
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 800));
         return navigate("/log");
       }
     } catch (error) {
       console.error("Error resetting password:", error);
+      setNotification({
+        type: "error",
+        text: "Invalid OTP entered",
+      });
+
+      setKey(key + 1);
     }
   };
 
   return (
     <div>
       <h1>Password Reset</h1>
+      {notification && (
+        <Notification
+          type={notification.type}
+          text={notification.text}
+          count={key}
+        />
+      )}
       <form onSubmit={handleSubmit}>
         <label>New Password:</label>
         <input

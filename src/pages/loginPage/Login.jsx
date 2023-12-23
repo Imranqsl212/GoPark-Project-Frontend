@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import useAuthentication from "../../additionals/CheckAuth.js";
+import Notification from '../../components/Notification/Notifications.jsx';
 
 const Login = () => {
   const navigate = useNavigate();
   const { checkAuthentication } = useAuthentication();
+  const [notification, setNotification] = useState(null);
+  const [key, setKey] = useState(1);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -25,23 +28,41 @@ const Login = () => {
     try {
       const response = await axios.post('https://defteam.onrender.com/api-auth/login/', formData);
 
-      // Login successful
       const tokens = {
         access: response.data.access,
         refresh: response.data.refresh,
       };
 
       localStorage.setItem('tokens', JSON.stringify(tokens));
+
+      setNotification({
+        type: "success",
+        text: "Registration successful!",
+      });
+
+      await new Promise((resolve) => setTimeout(resolve, 1300)); 
+
       checkAuthentication()
       return navigate('/')
     } catch (error) {
-      console.error('Error during login:', error.response.data);
+      setNotification({
+        type: "error",
+        text: "Username or password are invalid, please try another",
+      });
+      setKey(key + 1);
     }
   };
 
   return (
     <div>
       <h1>Login</h1>
+      {notification && (
+        <Notification
+          type={notification.type}
+          text={notification.text}
+          count={key}
+        />
+      )}
       <form onSubmit={handleFormSubmit}>
         <label>
           Username:

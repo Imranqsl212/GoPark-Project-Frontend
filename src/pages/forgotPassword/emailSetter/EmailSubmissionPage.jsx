@@ -1,40 +1,56 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-// ... (other imports)
+import Notification from "../../../components/Notification/Notifications.jsx";
 
 const EmailSubmissionPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [error, setError] = useState(null); // Add state to handle errors
+  const [notification, setNotification] = useState(null);
+  const [key, setKey] = useState(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://defteam.onrender.com/api-auth/send_email/", {
-        email,
-      });
+      const response = await axios.post(
+        "https://defteam.onrender.com/api-auth/send_email/",
+        {
+          email,
+        }
+      );
 
       if (response.status === 200) {
         localStorage.setItem("email", email);
+        setNotification({
+          type: "success",
+          text: "Email entered successful!",
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 800));
         return navigate("/otp");
       }
     } catch (error) {
       console.error("Error submitting email:", error);
-      if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error);
-      } else {
-        setError("An unexpected error occurred.");
-      }
+      setNotification({
+        type: "error",
+        text: "Invalid email entered",
+      });
+
+      setKey(key + 1);
     }
   };
 
   return (
     <div>
+      {notification && (
+        <Notification
+          type={notification.type}
+          text={notification.text}
+          count={key}
+        />
+      )}
       <h1>Email Submission</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}{" "}
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
         <input

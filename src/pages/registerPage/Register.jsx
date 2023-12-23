@@ -37,15 +37,15 @@ const Register = () => {
 
       localStorage.setItem("tokens", JSON.stringify(tokens));
       console.log("Registration successful:", response.data);
-      
+
       setNotification({
-        type: "promise",
+        type: "success",
         text: "Registration successful!",
       });
 
       checkAuthentication();
 
-      await new Promise((resolve) => setTimeout(resolve, 2000)); 
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       navigate("/");
 
@@ -53,13 +53,22 @@ const Register = () => {
       return navigate("/");
     } catch (error) {
       console.error("Error during registration:", error.response.data);
-      setNotification({
-        type: "error",
-        text: "Error during registration. Please try again.",
-      });
+
+      if (error.response.status === 400) {
+        setNotification({
+          type: "error",
+          text: "Email or username already exists. Please choose another.",
+        });
+      } else {
+        setNotification({
+          type: "error",
+          text: "Error during registration. Please try again.",
+        });
+      }
+
       setKey(key + 1);
     }
-  };
+};
 
   return (
     <div>
