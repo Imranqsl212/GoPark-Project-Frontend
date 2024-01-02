@@ -54,21 +54,14 @@ const Register = () => {
     } catch (error) {
       console.error("Error during registration:", error.response.data);
 
-      if (error.response.status === 400) {
-        setNotification({
-          type: "error",
-          text: "Email or username already exists. Please choose another.",
-        });
-      } else {
-        setNotification({
-          type: "error",
-          text: "Error during registration. Please try again.",
-        });
-      }
+      setNotification({
+        type: "error",
+        text: "Email or username already exists. Please choose another.",
+      });
 
       setKey(key + 1);
     }
-};
+  };
 
   return (
     <div>
