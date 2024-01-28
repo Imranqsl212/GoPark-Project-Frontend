@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import useAuthentication from "../../additionals/CheckAuth.js";
 import Notification from '../../components/Notification/Notifications.jsx';
+import {delay} from '../../additionals/delay.js'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,10 +41,8 @@ const Login = () => {
         text: "Registration successful!",
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 1300)); 
+      delay(navigate,'/',1000)
 
-      checkAuthentication()
-      return navigate('/')
     } catch (error) {
       setNotification({
         type: "error",

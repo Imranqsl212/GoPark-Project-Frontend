@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../../components/Notification/Notifications.jsx";
+import {delay} from '../../../additionals/delay.js'
 
 const EmailSubmissionPage = () => {
   const navigate = useNavigate();
@@ -27,8 +28,7 @@ const EmailSubmissionPage = () => {
           text: "Email entered successful!",
         });
 
-        await new Promise((resolve) => setTimeout(resolve, 800));
-        return navigate("/otp");
+        delay(navigate,'/otp',900)
       }
     } catch (error) {
       console.error("Error submitting email:", error);

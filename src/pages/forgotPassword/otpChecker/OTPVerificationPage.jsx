@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../../components/Notification/Notifications.jsx";
+import { delay } from "../../../additionals/delay.js";
 
 const OTPVerificationPage = () => {
   const [otp, setOtp] = useState("");
@@ -24,8 +25,7 @@ const OTPVerificationPage = () => {
           text: "OTP entered successful!",
         });
 
-        await new Promise((resolve) => setTimeout(resolve, 800));
-        return navigate("/reset-password");
+        delay(navigate, "/reset-password", 900);
       }
     } catch (error) {
       setNotification({

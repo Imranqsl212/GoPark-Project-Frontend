@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuthentication from "../../additionals/CheckAuth.js";
 import Notification from "../../components/Notification/Notifications.jsx";
+import {delay} from '../../additionals/delay.js'
 
 const Register = () => {
   const navigate = useNavigate();
@@ -43,14 +44,7 @@ const Register = () => {
         text: "Registration successful!",
       });
 
-      checkAuthentication();
-
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      navigate("/");
-
-      checkAuthentication();
-      return navigate("/");
+      delay(navigate,'/',1000)
     } catch (error) {
       console.error("Error during registration:", error.response.data);
 

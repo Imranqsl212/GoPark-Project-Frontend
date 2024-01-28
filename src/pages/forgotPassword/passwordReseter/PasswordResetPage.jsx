@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../../components/Notification/Notifications.jsx";
+import { delay } from "../../../additionals/delay.js";
 
 const PasswordResetPage = () => {
   const navigate = useNavigate();
@@ -29,8 +30,7 @@ const PasswordResetPage = () => {
           text: "Password reseted successfuly!",
         });
 
-        await new Promise((resolve) => setTimeout(resolve, 800));
-        return navigate("/log");
+        delay(navigate,'/log',900)
       }
     } catch (error) {
       console.error("Error resetting password:", error);
