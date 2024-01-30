@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/homePage/Home.jsx";
-import Register from "./pages/registerPage/Register.jsx";
-import Login from "./pages/loginPage/Login.jsx";
+import Home from "./pages/HomePage/Home.jsx";
+import Register from "./pages/RegisterPage/RegisterPage.jsx";
+import Login from "./pages/LoginPage/LoginPage.jsx";
 import useAuthentication from "./additionals/CheckAuth.js";
-import ChangePassword from "./pages/changePass/ChangePassword.jsx";
-import EmailSubmissionPage from "./pages/forgotPassword/emailSetter/EmailSubmissionPage.jsx";
-import OTPVerificationPage from "./pages/forgotPassword/otpChecker/OTPVerificationPage.jsx";
-import PasswordResetPage from "./pages/forgotPassword/passwordReseter/PasswordResetPage.jsx";
+import ChangePassword from "./pages/ChangePasswordPage/ChangePasswordPage.jsx";
+
+import EmailSubmissionPage from "./pages/ForgotPassword/EmailSetter/EmailSubmissionPage.jsx";
+import OTPVerificationPage from "./pages/ForgotPassword/OtpChecker/OTPVerificationPage.jsx";
+import PasswordResetPage from "./pages/ForgotPassword/PasswordReseter/PasswordResetPage.jsx";
 
 function App() {
   const { checkAuthentication } = useAuthentication();
@@ -23,7 +24,7 @@ function App() {
         <Route path="/reg" element={<Register />} />
         <Route path="/log" element={<Login />} />
         <Route path="/change" element={<ChangePassword />} />
-        <Route path="/email" element={<EmailSubmissionPage />} />
+        <Route path="/forgot" element={<EmailSubmissionPage />} />
         <Route path="/otp" element={<OTPVerificationPage />} />
         <Route path="/reset-password" element={<PasswordResetPage />} />
       </Routes>

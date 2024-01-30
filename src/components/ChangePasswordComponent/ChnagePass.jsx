@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications";
 import { delay } from "../../additionals/delay.js";
 import axios from "axios";
 
-const ChangePassword = () => {
+const ChangePassword = (props) => {
+  const { apiEndpoint } = props;
+
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ const ChangePassword = () => {
     try {
       const token = JSON.parse(localStorage.getItem("tokens"));
       const response = await axios.post(
-        "https://defteam.onrender.com/api-auth/change-password/",
+        apiEndpoint,
         {
           old_password: oldPassword,
           new_password: newPassword,

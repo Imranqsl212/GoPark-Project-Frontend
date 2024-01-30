@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useAuthentication from "../../additionals/CheckAuth.js";
 import Notification from "../../components/Notification/Notifications.jsx";
-import {delay} from '../../additionals/delay.js'
+import { delay } from "../../additionals/delay.js";
 
-const Register = () => {
+const Register = ({ apiEndpoint }) => {
   const navigate = useNavigate();
-  const { checkAuthentication } = useAuthentication();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -15,6 +13,7 @@ const Register = () => {
   });
   const [notification, setNotification] = useState(null);
   const [key, setKey] = useState(1);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,14 +21,12 @@ const Register = () => {
       [name]: value,
     });
   };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://defteam.onrender.com/api-auth/register/",
-        formData
-      );
+      const response = await axios.post(apiEndpoint, formData);
 
       const tokens = {
         access: response.data.access,
@@ -44,7 +41,7 @@ const Register = () => {
         text: "Registration successful!",
       });
 
-      delay(navigate,'/',1000)
+      delay(navigate, "/", 1000);
     } catch (error) {
       console.error("Error during registration:", error.response.data);
 
@@ -101,22 +98,9 @@ const Register = () => {
           />
         </label>
         <br />
-        <button type="submit">Register</button>
-        <button
-          onClick={() => {
-            navigate("/log");
-          }}
-        >
-          Login
-        </button>
-
-        <button
-          onClick={() => {
-            navigate("/email");
-          }}
-        >
-          Forgot
-        </button>
+        <button onClick={handleFormSubmit} type="submit">Register</button>
+        <button onClick={() => navigate("/log")}>Login</button>
+        <button onClick={() => navigate("/forgot")}>Forgot</button>
       </form>
     </div>
   );

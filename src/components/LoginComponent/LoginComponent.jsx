@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useAuthentication from "../../additionals/CheckAuth.js";
-import Notification from '../../components/Notification/Notifications.jsx';
-import {delay} from '../../additionals/delay.js'
+import Notification from "../../components/Notification/Notifications.jsx";
+import { delay } from "../../additionals/delay.js";
 
-const Login = () => {
+const Login = ({ apiEndpoint }) => {
   const navigate = useNavigate();
-  const { checkAuthentication } = useAuthentication();
   const [notification, setNotification] = useState(null);
   const [key, setKey] = useState(1);
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
 
   const handleInputChange = (e) => {
@@ -27,22 +25,21 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://defteam.onrender.com/api-auth/login/', formData);
+      const response = await axios.post(apiEndpoint, formData);
 
       const tokens = {
         access: response.data.access,
         refresh: response.data.refresh,
       };
 
-      localStorage.setItem('tokens', JSON.stringify(tokens));
+      localStorage.setItem("tokens", JSON.stringify(tokens));
 
       setNotification({
         type: "success",
-        text: "Registration successful!",
+        text: "Login successful!",
       });
 
-      delay(navigate,'/',1000)
-
+      delay(navigate, "/", 1000);
     } catch (error) {
       setNotification({
         type: "error",
@@ -85,14 +82,20 @@ const Login = () => {
           />
         </label>
         <br />
-        <button type="submit">Login</button>
-        <button onClick={()=>{navigate('/reg');}} >Register</button>
+        <button onClick={handleFormSubmit} type="submit">Login</button>
         <button
           onClick={() => {
-            navigate("/email");
+            navigate("/reg");
           }}
         >
-          Forgot
+          Register
+        </button>
+        <button
+          onClick={() => {
+            navigate("/forgot");
+          }}
+        >
+          Forgot Password?
         </button>
       </form>
     </div>

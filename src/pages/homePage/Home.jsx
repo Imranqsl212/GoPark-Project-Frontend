@@ -1,9 +1,10 @@
-import useAuthentication from "../../additionals/CheckAuth.js";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { useState } from "react";
+import { delay } from "../../additionals/delay.js";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { checkAuthentication } = useAuthentication();
+  const navigate = useNavigate();
   const [notification, setNotification] = useState(null);
   const logout = async () => {
     localStorage.removeItem("tokens");
@@ -13,9 +14,7 @@ const Home = () => {
       text: "Logged out successful!",
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 866)); 
-
-    checkAuthentication();
+    delay(navigate, "/log", 866);
   };
 
   return (

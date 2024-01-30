@@ -1,5 +1,5 @@
 import toast, { Toaster } from "react-hot-toast";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 
 const Notification = ({ type, text, count = 0 }) => {
   useEffect(() => {
