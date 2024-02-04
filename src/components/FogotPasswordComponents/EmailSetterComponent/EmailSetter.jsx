@@ -3,6 +3,7 @@ import axios from "axios";
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { delay } from "../../../additionals/delay.js";
 import { useNavigate } from "react-router-dom";
+import './EmailSetter.css'
 
 const EmailSubmission = ({ apiEndpoint }) => {
   const navigate = useNavigate();

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications";
 import { delay } from "../../additionals/delay.js";
 import axios from "axios";
+import './ChngePass.css'
 
 const ChangePassword = (props) => {
   const { apiEndpoint } = props;

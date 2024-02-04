@@ -3,6 +3,7 @@ import axios from "axios";
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { useNavigate } from "react-router-dom";
 import { delay } from "../../../additionals/delay.js";
+import './Password-reset-component.css'
 
 const PasswordReset = ({ apiEndpoint }) => {
   const navigate = useNavigate();
