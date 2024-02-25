@@ -9,6 +9,7 @@ import './LoginComponent.scss'
 const Login = ({ apiEndpoint }) => {
   const navigate = useNavigate();
   const [notification, setNotification] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [key, setKey] = useState(1);
   const [formData, setFormData] = useState({
     username: "",
@@ -23,9 +24,13 @@ const Login = ({ apiEndpoint }) => {
     });
   };
 
+  const onShowePassword = () => {
+    setShowPassword(showPassword => !showPassword)
+  }
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+    console.log('asdasdad');
     try {
       const response = await axios.post(apiEndpoint, formData);
 
@@ -53,6 +58,13 @@ const Login = ({ apiEndpoint }) => {
 
   return (
     <section className="login">
+      {notification && (
+        <Notification
+          type={notification.type}
+          text={notification.text}
+          count={key}
+        />
+      )}
       <div className="conatiner">
         <div className="login__form">
           <div className="logo"></div>
@@ -60,13 +72,6 @@ const Login = ({ apiEndpoint }) => {
             <div className="form__header">
               <h1 className="form__title">Вход</h1>
             </div>
-            {notification && (
-              <Notification
-                type={notification.type}
-                text={notification.text}
-                count={key}
-              />
-            )}
               <form onSubmit={handleFormSubmit}>
               <label className="input__field">
                 Введите адрес электронной почты
@@ -82,14 +87,14 @@ const Login = ({ apiEndpoint }) => {
               <label className="input__field">
                 Введите пароль
                 <input
-                  type="password"
+                  type={ showPassword ? 'text' : 'password' }
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
                   required
                   placeholder="********"
                 />
-                <button type="button" className="input__show-btn" onClick={() => {}} />
+                <button type="button" className="input__show-btn" onClick={onShowePassword} />
               </label>
             </form>
             <div className="form__footer">

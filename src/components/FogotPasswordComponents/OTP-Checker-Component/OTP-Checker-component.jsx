@@ -3,7 +3,7 @@ import axios from "axios";
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { useNavigate } from "react-router-dom";
 import { delay } from "../../../additionals/delay.js";
- import './OTP-Checker-component.css'
+ import './OTP-Checker-component.scss'
 
 const OTPVerification = ({ apiEndpoint }) => {
   const [otp, setOtp] = useState("");

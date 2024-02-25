@@ -8,7 +8,6 @@
     &__form {
         display: flex;
         justify-content: space-around;
-        justify-items: center;
         align-items: center;
         flex-wrap: wrap;
         gap: 40px;
@@ -35,15 +34,9 @@
     }
     &__forgot {
         font-size: 18px;
-        &:hover {
-            text-decoration-line: underline;
-        }
     }
     &__register {
         font-size: 20px;
-        &:hover {
-            text-decoration-line: underline;
-        }
     }
     @media (max-width: 640px) {
         padding: 24px 0;
