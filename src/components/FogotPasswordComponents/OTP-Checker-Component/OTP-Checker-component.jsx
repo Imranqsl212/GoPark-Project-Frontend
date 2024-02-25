@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState, Link } from "react";
 import axios from "axios";
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { useNavigate } from "react-router-dom";
 import { delay } from "../../../additionals/delay.js";
- import './OTP-Checker-component.css'
+ import './OTP-Checker-component.scss'
 
 const OTPVerification = ({ apiEndpoint }) => {
   const [otp, setOtp] = useState("");
@@ -40,7 +40,7 @@ const OTPVerification = ({ apiEndpoint }) => {
   };
 
   return (
-    <div>
+    <section className="otp">
       {notification && (
         <Notification
           type={notification.type}
@@ -48,18 +48,37 @@ const OTPVerification = ({ apiEndpoint }) => {
           count={key}
         />
       )}
-      <h1>OTP Verification</h1>
-      <form onSubmit={handleSubmit}>
-        <label>OTP:</label>
-        <input
-          type="text"
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-          required
-        />
-        <button onClick={handleSubmit} type="submit">Verify OTP</button>
-      </form>
-    </div>
+      <div className="conatiner">
+        <div className="otp__form">
+          <div className="logo"></div>
+          <div className="form">
+            <div className="form__header"> 
+              <h1>Верификация</h1>
+              <p>Мы отправили код подтверждение на ваш email.</p>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <label className="input__field">
+                Введите код подтверждение 
+                <input
+                  type="text"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  required
+                  placeholder="0000"
+                />
+              </label>
+            </form>
+            <div className="form__footer">  
+              <button className="button__submit" onClick={handleSubmit} type="submit">Отправить</button>
+              <div className="form__forgot">
+                <p>Не пришел код?</p>
+                <Link to="/log">Отправить повторно </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

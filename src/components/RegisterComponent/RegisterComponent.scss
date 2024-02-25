@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.register {
+    padding: 150px 25px;
+    &__form {
+        display: flex;
+        justify-content: space-around;
+        justify-items: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+    @media (max-width: 640px) {
+        padding: 24px 0;
+    }
+}

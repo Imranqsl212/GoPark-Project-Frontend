@@ -1,0 +1,11 @@
+.button {
+    &__submit {
+        border-radius: 10px;
+        background: $main-color;
+        padding: 20px 32px 20px 32px;
+        width: 342px;
+        font-size: 20px;
+        color: $white-color;
+        transition: 0.3s transform;
+    }
+}
