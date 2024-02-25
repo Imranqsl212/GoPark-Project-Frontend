@@ -48,32 +48,30 @@ const OTPVerification = ({ apiEndpoint }) => {
           count={key}
         />
       )}
-      <div className="conatiner">
-        <div className="otp__form">
-          <div className="logo"></div>
-          <div className="form">
-            <div className="form__header"> 
-              <h1>Верификация</h1>
-              <p>Мы отправили код подтверждение на ваш email.</p>
-            </div>
-            <form onSubmit={handleSubmit}>
-              <label className="input__field">
-                Введите код подтверждение 
-                <input
-                  type="text"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  required
-                  placeholder="0000"
-                />
-              </label>
-            </form>
-            <div className="form__footer">  
-              <button className="button__submit" onClick={handleSubmit} type="submit">Отправить</button>
-              <div className="form__forgot">
-                <p>Не пришел код?</p>
-                <Link to="/log">Отправить повторно </Link>
-              </div>
+      <div className="otp__form">
+        <div className="logo"></div>
+        <div className="form">
+          <div className="form__header"> 
+            <h1>Верификация</h1>
+            <p>Мы отправили код подтверждение на ваш email.</p>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <label className="input__field">
+              Введите код подтверждение 
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                required
+                placeholder="0000"
+              />
+            </label>
+          </form>
+          <div className="form__footer">  
+            <button className="button__submit" onClick={handleSubmit} type="submit">Отправить</button>
+            <div className="form__forgot">
+              <p>Не пришел код?</p>
+              <Link to="/log">Отправить повторно </Link>
             </div>
           </div>
         </div>

@@ -54,7 +54,6 @@ const Login = ({ apiEndpoint }) => {
 
   return (
     <section className="login">
-      <div className="conatiner">
         {notification && (
           <Notification
             type={notification.type}
@@ -101,7 +100,6 @@ const Login = ({ apiEndpoint }) => {
            
           </div>
         </div>
-      </div>
     </section>
   );
 };
