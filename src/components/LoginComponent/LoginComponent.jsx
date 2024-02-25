@@ -72,7 +72,7 @@ const Login = ({ apiEndpoint }) => {
               <label className="input__field">
                 Введите адрес электронной почты
                 <input
-                  type="text"
+                  type="email"
                   name="username"
                   value={formData.username}
                   onChange={handleInputChange}
