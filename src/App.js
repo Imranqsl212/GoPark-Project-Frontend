@@ -6,9 +6,9 @@ import Login from "./pages/LoginPage/LoginPage.jsx";
 import useAuthentication from "./additionals/CheckAuth.js";
 import ChangePassword from "./pages/ChangePasswordPage/ChangePasswordPage.jsx";
 
-import EmailSubmissionPage from "./pages/ForgotPassword/emailSetter/EmailSubmissionPage.jsx";
-import OTPVerificationPage from "./pages/ForgotPassword/otpChecker/OTPVerificationPage.jsx";
-import PasswordResetPage from "./pages/ForgotPassword/passwordReseter/PasswordResetPage.jsx";
+import EmailSubmissionPage from "./pages/forgotPassword/emailSetter/EmailSubmissionPage.jsx";
+import OTPVerificationPage from "./pages/forgotPassword/otpChecker/OTPVerificationPage.jsx";
+import PasswordResetPage from "./pages/forgotPassword/passwordReseter/PasswordResetPage.jsx";
 
 function App() {
   const { checkAuthentication } = useAuthentication();

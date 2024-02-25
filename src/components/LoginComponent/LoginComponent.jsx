@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import './LoginComponent.css'
+import googleImg from '../../assets/images/google-login.svg';
+import './LoginComponent.scss'
 
 const Login = ({ apiEndpoint }) => {
   const navigate = useNavigate();
@@ -51,55 +52,60 @@ const Login = ({ apiEndpoint }) => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      {notification && (
-        <Notification
-          type={notification.type}
-          text={notification.text}
-          count={key}
-        />
-      )}
-      <form onSubmit={handleFormSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <button onClick={handleFormSubmit} type="submit">Login</button>
-        <button
-          onClick={() => {
-            navigate("/reg");
-          }}
-        >
-          Register
-        </button>
-        <button
-          onClick={() => {
-            navigate("/forgot");
-          }}
-        >
-          Forgot Password?
-        </button>
-      </form>
-    </div>
+    <section className="login">
+      <div className="conatiner">
+        <div className="login__form">
+          <div className="logo"></div>
+          <div className="form">
+            <div className="form__header">
+              <h1 className="form__title">Вход</h1>
+            </div>
+            {notification && (
+              <Notification
+                type={notification.type}
+                text={notification.text}
+                count={key}
+              />
+            )}
+              <form onSubmit={handleFormSubmit}>
+              <label className="input__field">
+                Введите адрес электронной почты
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="naku@gmailcom"
+                />
+              </label>
+              <label className="input__field">
+                Введите пароль
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="********"
+                />
+                <button type="button" className="input__show-btn" onClick={() => {}} />
+              </label>
+            </form>
+            <div className="form__footer">
+              <button className="button__submit" onClick={handleFormSubmit} type="submit">Войти</button>
+              <button className="login__btn" onClick={() => {}}>
+                <img src={googleImg} alt="google" />
+                <p>Войти через Google</p>
+              </button>
+              <Link to="/" className="login__forgot">Забыли пароль?</Link>
+              <Link to='/' className="login__register">Регистрация</Link>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

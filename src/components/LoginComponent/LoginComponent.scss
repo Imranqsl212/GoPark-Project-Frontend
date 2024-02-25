@@ -1,0 +1,51 @@
+@import '../../styles/variables';
+
+.login {
+    padding: 150px 25px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    &__form {
+        display: flex;
+        justify-content: space-around;
+        justify-items: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border-radius: 10px;
+        padding: 20px 32px 20px 32px;
+        width: 342px;
+        cursor: pointer;
+        border: 1px solid $main-color;
+        p {
+            font-size: 20px;
+            color: $main-color;
+        }
+        img {
+            width: 17px;
+            height: 17px;
+            object-fit: contain;
+        }
+    }
+    &__forgot {
+        font-size: 18px;
+        &:hover {
+            text-decoration-line: underline;
+        }
+    }
+    &__register {
+        font-size: 20px;
+        &:hover {
+            text-decoration-line: underline;
+        }
+    }
+    @media (max-width: 640px) {
+        padding: 24px 0;
+    }
+}
