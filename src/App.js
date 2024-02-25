@@ -5,7 +5,6 @@ import Register from "./pages/RegisterPage/RegisterPage.jsx";
 import Login from "./pages/LoginPage/LoginPage.jsx";
 import useAuthentication from "./additionals/CheckAuth.js";
 import ChangePassword from "./pages/ChangePasswordPage/ChangePasswordPage.jsx";
-import OTPVerification from "./components/FogotPasswordComponents/OTP-Checker-Component/OTP-Checker-component.jsx";
 
 import EmailSubmissionPage from "./pages/forgotPassword/emailSetter/EmailSubmissionPage.jsx";
 import OTPVerificationPage from "./pages/forgotPassword/otpChecker/OTPVerificationPage.jsx";

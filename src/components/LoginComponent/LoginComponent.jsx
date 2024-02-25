@@ -4,12 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
 import googleImg from '../../assets/images/google-login.svg';
+import PasswordInput from '../common/forms/PasswordInput.jsx';
 import './LoginComponent.scss'
 
 const Login = ({ apiEndpoint }) => {
   const navigate = useNavigate();
   const [notification, setNotification] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
   const [key, setKey] = useState(1);
   const [formData, setFormData] = useState({
     username: "",
@@ -24,13 +24,9 @@ const Login = ({ apiEndpoint }) => {
     });
   };
 
-  const onShowePassword = () => {
-    setShowPassword(showPassword => !showPassword)
-  }
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log('asdasdad');
+    
     try {
       const response = await axios.post(apiEndpoint, formData);
 
@@ -86,15 +82,11 @@ const Login = ({ apiEndpoint }) => {
               </label>
               <label className="input__field">
                 Введите пароль
-                <input
-                  type={ showPassword ? 'text' : 'password' }
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="********"
+                <PasswordInput 
+                  name="password" 
+                  value={formData.password} 
+                  onChange={handleInputChange} 
                 />
-                <button type="button" className="input__show-btn" onClick={onShowePassword} />
               </label>
             </form>
             <div className="form__footer">

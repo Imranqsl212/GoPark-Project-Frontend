@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, Link } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
+import PasswordInput from '../common/forms/PasswordInput.jsx';
 import './RegisterComponent.scss'
 
 const Register = ({ apiEndpoint }) => {
@@ -79,9 +80,9 @@ const Register = ({ apiEndpoint }) => {
               <label className="input__field">
                 Введите адрес электронной почты
                 <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
+                  type="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleInputChange}
                   placeholder="naku@gmailcom"
                   required
@@ -90,9 +91,9 @@ const Register = ({ apiEndpoint }) => {
               <label className="input__field">
                 Введите ваше имя
                 <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
+                  type="text"
+                  name="username"
+                  value={formData.username}
                   onChange={handleInputChange}
                   required
                   placeholder="nakufang"
@@ -100,34 +101,26 @@ const Register = ({ apiEndpoint }) => {
               </label>
               <label className="input__field">
                 Установить пароль
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="********"
+                <PasswordInput 
+                  name="password" 
+                  value={formData.password} 
+                  onChange={handleInputChange} 
                 />
-                <button type="button" className="input__show-btn" onClick={() => {}} />
               </label>
               <label className="input__field">
                 Повторите пароль
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="********"
+                <PasswordInput 
+                  name="confirmPassword" 
+                  value={formData.confirmPassword} 
+                  onChange={handleInputChange} 
                 />
-                <button type="button" className="input__show-btn" onClick={() => {}} />
               </label>
             </form>
             <div className="form__footer">
                 <button type="submit" className="button__submit" onClick={handleFormSubmit}>Зарегистрироваться</button>
                 <div className="form__forgot">
                   <p>Уже есть аккаунт?</p>
-                  <button type="button" onClick={() => navigate("/log")}>Войти</button>
+                  <Link to="/log">Войти</Link>
                 </div>
             </div>
           </div>
