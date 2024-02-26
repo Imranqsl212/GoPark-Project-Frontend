@@ -1,4 +1,5 @@
-import { useState, Link } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
@@ -114,14 +115,14 @@ const Register = ({ apiEndpoint }) => {
                 onChange={handleInputChange} 
               />
             </label>
-          </form>
-          <div className="form__footer">
+            <div className="form__footer">
               <button type="submit" className="button__submit" onClick={handleFormSubmit}>Зарегистрироваться</button>
               <div className="form__forgot">
                 <p>Уже есть аккаунт?</p>
                 <Link to="/log">Войти</Link>
               </div>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </section>

@@ -87,17 +87,16 @@ const Login = ({ apiEndpoint }) => {
                   onChange={handleInputChange} 
                 />
               </label>
+              <div className="form__footer">
+                <button className="button__submit" onClick={handleFormSubmit} type="submit">Войти</button>
+                <button className="login__btn" onClick={() => {}}>
+                  <img src={googleImg} alt="google" />
+                  <p>Войти через Google</p>
+                </button>
+                <Link to="/" className="login__forgot">Забыли пароль?</Link>
+                <Link to="/reg" className="login__register">Регистрация</Link>
+              </div>
             </form>
-            <div className="form__footer">
-              <button className="button__submit" onClick={handleFormSubmit} type="submit">Войти</button>
-              <button className="login__btn" onClick={() => {}}>
-                <img src={googleImg} alt="google" />
-                <p>Войти через Google</p>
-              </button>
-              <Link to="/" className="login__forgot">Забыли пароль?</Link>
-              <Link to='/' className="login__register">Регистрация</Link>
-            </div>
-           
           </div>
         </div>
     </section>

@@ -1,4 +1,5 @@
-import { useState, Link } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { useNavigate } from "react-router-dom";
@@ -66,14 +67,14 @@ const OTPVerification = ({ apiEndpoint }) => {
                 placeholder="0000"
               />
             </label>
-          </form>
-          <div className="form__footer">  
-            <button className="button__submit" onClick={handleSubmit} type="submit">Отправить</button>
-            <div className="form__forgot">
-              <p>Не пришел код?</p>
-              <Link to="/log">Отправить повторно </Link>
+            <div className="form__footer">  
+              <button className="button__submit" onClick={handleSubmit} type="submit">Отправить</button>
+              <div className="form__forgot">
+                <p>Не пришел код?</p>
+                <Link to="/log">Отправить повторно </Link>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>
