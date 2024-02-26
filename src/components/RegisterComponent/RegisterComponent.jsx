@@ -4,8 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import PasswordInput from '../common/forms/PasswordInput.jsx';
-import './RegisterComponent.scss'
+import PasswordInput from "../common/forms/PasswordInput.jsx";
+import "./RegisterComponent.scss";
 
 const Register = ({ apiEndpoint }) => {
   const navigate = useNavigate();
@@ -66,7 +66,8 @@ const Register = ({ apiEndpoint }) => {
           <div className="form__header">
             <h1 className="form__title">Регистрация</h1>
             <p className="form__descr">
-              Заполните регистрационные данные. Это займет пару минут.Все, что вам нужно, это адрес электронной почты
+              Заполните регистрационные данные. Это займет пару минут.Все, что
+              вам нужно, это адрес электронной почты
             </p>
           </div>
           {notification && (
@@ -89,34 +90,40 @@ const Register = ({ apiEndpoint }) => {
               />
             </label>
             <label className="input__field">
-              Введите ваше имя
+              Введите ваше юзернейм
               <input
                 type="text"
                 name="username"
                 value={formData.username}
                 onChange={handleInputChange}
                 required
-                placeholder="nakufang"
+                placeholder="Акылай"
               />
             </label>
             <label className="input__field">
               Установить пароль
-              <PasswordInput 
-                name="password" 
-                value={formData.password} 
-                onChange={handleInputChange} 
+              <PasswordInput
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
               />
             </label>
             <label className="input__field">
               Повторите пароль
-              <PasswordInput 
-                name="confirmPassword" 
-                value={formData.confirmPassword} 
-                onChange={handleInputChange} 
+              <PasswordInput
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
               />
             </label>
             <div className="form__footer">
-             <button type="submit" className="button__submit" onClick={handleFormSubmit}>Зарегистрироваться</button>
+              <button
+                type="submit"
+                className="button__submit"
+                onClick={handleFormSubmit}
+              >
+                Зарегистрироваться
+              </button>
               <div className="form__forgot">
                 <p className="have__account">Уже есть аккаунт?</p>
                 <Link to="/log">Войти</Link>

@@ -3,9 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import googleImg from '../../assets/images/google-login.svg';
-import PasswordInput from '../common/forms/PasswordInput.jsx';
-import './LoginComponent.scss'
+import PasswordInput from "../common/forms/PasswordInput.jsx";
+import "./LoginComponent.scss";
 
 const Login = ({ apiEndpoint }) => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const Login = ({ apiEndpoint }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await axios.post(apiEndpoint, formData);
 
@@ -54,51 +53,57 @@ const Login = ({ apiEndpoint }) => {
 
   return (
     <section className="login">
-        {notification && (
-          <Notification
-            type={notification.type}
-            text={notification.text}
-            count={key}
-          />
-        )}
-        <div className="login__form">
-          <div className="logo"></div>
-          <div className="form">
-            <div className="form__header">
-              <h1 className="form__title">Вход</h1>
-            </div>
-              <form onSubmit={handleFormSubmit}>
-              <label className="input__field">
-                Введите адрес электронной почты
-                <input
-                  type="email"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="naku@gmailcom"
-                />
-              </label>
-              <label className="input__field">
-                Введите пароль
-                <PasswordInput 
-                  name="password" 
-                  value={formData.password} 
-                  onChange={handleInputChange}
-                />
-              </label>
-              <div className="form__footer">
-                <button className="button__submit" onClick={handleFormSubmit} type="submit">Войти</button>
-                <button className="login__btn" onClick={() => {}}>
-                  <img src={googleImg} alt="google" />
-                  <p>Войти через Google</p>
-                </button>
-                <Link to="/" className="login__forgot">Забыли пароль?</Link>
-                <Link to="/reg" className="login__register">Регистрация</Link>
-              </div>
-            </form>
+      {notification && (
+        <Notification
+          type={notification.type}
+          text={notification.text}
+          count={key}
+        />
+      )}
+      <div className="login__form">
+        <div className="logo"></div>
+        <div className="form">
+          <div className="form__header">
+            <h1 className="form__title">Вход</h1>
           </div>
+          <form onSubmit={handleFormSubmit}>
+            <label className="input__field">
+              Введите ваш юзернейм
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleInputChange}
+                required
+                placeholder="Акылай"
+              />
+            </label>
+            <label className="input__field">
+              Введите пароль
+              <PasswordInput
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+            </label>
+            <div className="form__footer">
+              <button
+                className="button__submit"
+                onClick={handleFormSubmit}
+                type="submit"
+              >
+                Войти
+              </button>
+              <Link to="/forgot" className="login__forgot">
+                Забыли пароль?
+              </Link>
+              <Link to="/reg" className="login__register">
+                Регистрация
+              </Link>
+            </div>
+          </form>
         </div>
+      </div>
     </section>
   );
 };
