@@ -1,7 +1,7 @@
 import  { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage/Home.jsx";
-import Register from "./pages/RegisterPage/RegisterPage.jsx";
+import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import Login from "./pages/LoginPage/LoginPage.jsx";
 import useAuthentication from "./additionals/CheckAuth.js";
 import ChangePassword from "./pages/ChangePasswordPage/ChangePasswordPage.jsx";
@@ -21,7 +21,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/reg" element={<Register />} />
+        <Route path="/reg" element={<RegisterPage />} />
         <Route path="/log" element={<Login />} />
         <Route path="/change" element={<ChangePassword />} />
         <Route path="/forgot" element={<EmailSubmissionPage />} />

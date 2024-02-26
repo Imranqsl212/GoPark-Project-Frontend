@@ -1,4 +1,5 @@
-import { useState, Link } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
@@ -59,71 +60,69 @@ const Register = ({ apiEndpoint }) => {
 
   return (
     <section className="register">
-      <div className="container">
-        <div className="register__form">
-          <div className="logo"></div>
-          <div className="form">
-            <div className="form__header">
-              <h1 className="form__title">Регистрация</h1>
-              <p className="form__descr">
-                Заполните регистрационные данные. Это займет пару минут.Все, что вам нужно, это адрес электронной почты
-              </p>
-            </div>
-            {notification && (
-              <Notification
-                type={notification.type}
-                text={notification.text}
-                count={key}
-              />
-            )}
-            <form onSubmit={handleFormSubmit}>
-              <label className="input__field">
-                Введите адрес электронной почты
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="naku@gmailcom"
-                  required
-                />
-              </label>
-              <label className="input__field">
-                Введите ваше имя
-                <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="nakufang"
-                />
-              </label>
-              <label className="input__field">
-                Установить пароль
-                <PasswordInput 
-                  name="password" 
-                  value={formData.password} 
-                  onChange={handleInputChange} 
-                />
-              </label>
-              <label className="input__field">
-                Повторите пароль
-                <PasswordInput 
-                  name="confirmPassword" 
-                  value={formData.confirmPassword} 
-                  onChange={handleInputChange} 
-                />
-              </label>
-            </form>
-            <div className="form__footer">
-                <button type="submit" className="button__submit" onClick={handleFormSubmit}>Зарегистрироваться</button>
-                <div className="form__forgot">
-                  <p>Уже есть аккаунт?</p>
-                  <Link to="/log">Войти</Link>
-                </div>
-            </div>
+      <div className="register__form">
+        <div className="logo"></div>
+        <div className="form">
+          <div className="form__header">
+            <h1 className="form__title">Регистрация</h1>
+            <p className="form__descr">
+              Заполните регистрационные данные. Это займет пару минут.Все, что вам нужно, это адрес электронной почты
+            </p>
           </div>
+          {notification && (
+            <Notification
+              type={notification.type}
+              text={notification.text}
+              count={key}
+            />
+          )}
+          <form onSubmit={handleFormSubmit}>
+            <label className="input__field">
+              Введите адрес электронной почты
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="naku@gmailcom"
+                required
+              />
+            </label>
+            <label className="input__field">
+              Введите ваше имя
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleInputChange}
+                required
+                placeholder="nakufang"
+              />
+            </label>
+            <label className="input__field">
+              Установить пароль
+              <PasswordInput 
+                name="password" 
+                value={formData.password} 
+                onChange={handleInputChange} 
+              />
+            </label>
+            <label className="input__field">
+              Повторите пароль
+              <PasswordInput 
+                name="confirmPassword" 
+                value={formData.confirmPassword} 
+                onChange={handleInputChange} 
+              />
+            </label>
+            <div className="form__footer">
+              <button type="submit" className="button__submit" onClick={handleFormSubmit}>Зарегистрироваться</button>
+              <div className="form__forgot">
+                <p>Уже есть аккаунт?</p>
+                <Link to="/log">Войти</Link>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </section>

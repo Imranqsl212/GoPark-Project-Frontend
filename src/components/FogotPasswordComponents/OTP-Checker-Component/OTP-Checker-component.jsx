@@ -1,4 +1,5 @@
-import { useState, Link } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { useNavigate } from "react-router-dom";
@@ -48,26 +49,24 @@ const OTPVerification = ({ apiEndpoint }) => {
           count={key}
         />
       )}
-      <div className="conatiner">
-        <div className="otp__form">
-          <div className="logo"></div>
-          <div className="form">
-            <div className="form__header"> 
-              <h1>Верификация</h1>
-              <p>Мы отправили код подтверждение на ваш email.</p>
-            </div>
-            <form onSubmit={handleSubmit}>
-              <label className="input__field">
-                Введите код подтверждение 
-                <input
-                  type="text"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  required
-                  placeholder="0000"
-                />
-              </label>
-            </form>
+      <div className="otp__form">
+        <div className="logo"></div>
+        <div className="form">
+          <div className="form__header"> 
+            <h1>Верификация</h1>
+            <p>Мы отправили код подтверждение на ваш email.</p>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <label className="input__field">
+              Введите код подтверждение 
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                required
+                placeholder="0000"
+              />
+            </label>
             <div className="form__footer">  
               <button className="button__submit" onClick={handleSubmit} type="submit">Отправить</button>
               <div className="form__forgot">
@@ -75,7 +74,7 @@ const OTPVerification = ({ apiEndpoint }) => {
                 <Link to="/log">Отправить повторно </Link>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>
