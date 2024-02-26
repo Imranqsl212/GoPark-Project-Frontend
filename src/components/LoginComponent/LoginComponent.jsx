@@ -84,7 +84,7 @@ const Login = ({ apiEndpoint }) => {
                 <PasswordInput 
                   name="password" 
                   value={formData.password} 
-                  onChange={handleInputChange} 
+                  onChange={handleInputChange}
                 />
               </label>
               <div className="form__footer">

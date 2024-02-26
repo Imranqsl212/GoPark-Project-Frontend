@@ -116,9 +116,9 @@ const Register = ({ apiEndpoint }) => {
               />
             </label>
             <div className="form__footer">
-              <button type="submit" className="button__submit" onClick={handleFormSubmit}>Зарегистрироваться</button>
+             <button type="submit" className="button__submit" onClick={handleFormSubmit}>Зарегистрироваться</button>
               <div className="form__forgot">
-                <p>Уже есть аккаунт?</p>
+                <p className="have__account">Уже есть аккаунт?</p>
                 <Link to="/log">Войти</Link>
               </div>
             </div>

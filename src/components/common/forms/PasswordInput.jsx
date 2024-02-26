@@ -16,6 +16,8 @@ const PasswordInput = ({ name, value, onChange }) => {
                 onChange={onChange}
                 required
                 placeholder="********"
+                minLength={8}
+                maxLength={16}
             />
             <button type="button" className="input__show-btn" onClick={onShowePassword}>
                 <svg width="22.105255" height="24.000000" viewBox="0 0 22.1053 24" fill="none">

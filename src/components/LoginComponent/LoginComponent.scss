@@ -34,9 +34,12 @@
     }
     &__forgot {
         font-size: 18px;
+        opacity: 0.7;
     }
     &__register {
         font-size: 20px;
+        opacity: 0.5 ;
+
     }
     @media (max-width: 640px) {
         padding: 24px 0;
