@@ -45,15 +45,6 @@
         font-weight: 600;
         line-height: 100%;
         color: $main-color;
-        a {
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 100%;
-            cursor: pointer;
-            &:hover {
-                text-decoration: underline;
-            }
-        }
     }
     &__logo {
         width: 394px;

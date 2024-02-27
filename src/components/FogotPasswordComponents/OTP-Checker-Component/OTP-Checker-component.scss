@@ -4,14 +4,4 @@
     justify-content: space-around;
     align-items: center;
     min-height: 100vh;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: 0%;
-    &__form {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 40px;
-    }
 }
