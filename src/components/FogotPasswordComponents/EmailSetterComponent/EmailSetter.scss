@@ -1,0 +1,11 @@
+.forgot {
+    padding: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100vh;
+    &__enter {
+        font-size: 16px;
+        opacity: 0.7;
+    }
+}
