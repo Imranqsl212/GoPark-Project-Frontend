@@ -9,7 +9,7 @@ import Input from "../common/input";
 
 import "./RegisterComponent.scss";
 
-//TODO: Add constants, add spinner, refactoring fetch function
+//TODO: Add constants, add spinner, refactoring fetch function, create button component last
 const Register = ({ apiEndpoint }) => {
   const navigate = useNavigate();
   const [notification, setNotification] = useState(null);
@@ -18,7 +18,7 @@ const Register = ({ apiEndpoint }) => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isLoading },
+    formState: { errors },
   } = useForm({mode: 'onChange'});
 
   const password = useRef({})
@@ -28,7 +28,6 @@ const Register = ({ apiEndpoint }) => {
     async (data) => {
       try {
         const response = await axios.post(apiEndpoint, data);
-  
         const tokens = {
           access: response.data.access,
           refresh: response.data.refresh,
@@ -40,7 +39,7 @@ const Register = ({ apiEndpoint }) => {
           type: "success",
           text: "Регистрация прошла успешно!",
         });
-  
+        
         delay(navigate, "/", 1000);
       } catch (error) {
         console.error("Error during registration:", error.response.data);
@@ -54,6 +53,11 @@ const Register = ({ apiEndpoint }) => {
       }
     }
   )
+
+  const validatePassword = value => 
+    value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/) ? true : 
+    '*Пароль должен содержать минимум 8 символов, хотя бы одну большую букву, одну маленькую букву, один знак и только латинские буквы';
+
 
   return (
     <section className="register">
@@ -95,7 +99,7 @@ const Register = ({ apiEndpoint }) => {
               required
               placeholder="********"
               error={errors.password}
-              validate={value => value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/) || '*Пароль должен содержать минимум 8 символов, хотя бы одну большую букву, одну маленькую букву, один знак и только латинские буквы' }
+              validate={value => validatePassword(value) }
             />
             <PasswordInput
               label='Подтверждение пароля'
