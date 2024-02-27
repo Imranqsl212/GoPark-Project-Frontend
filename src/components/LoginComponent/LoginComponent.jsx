@@ -17,15 +17,13 @@ const Login = ({ apiEndpoint }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isLoading },
+  } = useForm({mode: 'onChange'});
 
   const onSubmit = useCallback(
     async (data) => {
       try {
-        console.log(data);
         const response = await axios.post(apiEndpoint, data);
-  
         const tokens = {
           access: response.data.access,
           refresh: response.data.refresh,
@@ -59,7 +57,7 @@ const Login = ({ apiEndpoint }) => {
           <div className="form__header">
             <h1 className="form__title">Вход</h1>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
             <Input 
               label='Введите адрес электронной почты'
               name="email"
@@ -78,7 +76,7 @@ const Login = ({ apiEndpoint }) => {
               error={errors.password}
             />
             <div className="form__footer">
-              <button className="button__submit" type="submit">
+              <button className="button__submit" type="submit" disabled={isLoading}>
                 Войти
               </button>
               <Link to="/forgot" className="login__forgot">
