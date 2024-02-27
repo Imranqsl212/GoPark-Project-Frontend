@@ -8,7 +8,7 @@ import PasswordInput from "../common/input/passwordInput";
 import Input from "../common/input";
 import "./LoginComponent.scss";
 
-
+//TODO: Add constants, add spinner, refactoring fetch function
 const Login = ({ apiEndpoint }) => {
   const navigate = useNavigate();
   const [notification, setNotification] = useState(null);

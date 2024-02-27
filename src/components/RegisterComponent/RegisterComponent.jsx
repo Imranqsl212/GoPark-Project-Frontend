@@ -9,6 +9,7 @@ import Input from "../common/input";
 
 import "./RegisterComponent.scss";
 
+//TODO: Add constants, add spinner, refactoring fetch function
 const Register = ({ apiEndpoint }) => {
   const navigate = useNavigate();
   const [notification, setNotification] = useState(null);
@@ -94,6 +95,7 @@ const Register = ({ apiEndpoint }) => {
               required
               placeholder="********"
               error={errors.password}
+              validate={value => value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/) || '*Пароль должен содержать минимум 8 символов, хотя бы одну большую букву, одну маленькую букву, один знак и только латинские буквы' }
             />
             <PasswordInput
               label='Подтверждение пароля'
