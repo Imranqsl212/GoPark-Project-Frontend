@@ -1,8 +1,6 @@
 @import './variables';
 @import './buttons';
-@import './input';
 @import './form';
-@import './logo';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
 * {
@@ -58,10 +56,4 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; 
-}
-
-.container {
-    max-width: 1440px;
-    min-width: 360px;
-    margin: 0 auto;
 }

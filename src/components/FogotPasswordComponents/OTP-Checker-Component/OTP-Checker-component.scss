@@ -1,6 +1,9 @@
 
 .otp {
-    padding: 150px 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100vh;
     font-weight: 400;
     line-height: 100%;
     letter-spacing: 0%;

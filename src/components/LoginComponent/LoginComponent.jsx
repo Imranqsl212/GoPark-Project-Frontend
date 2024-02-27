@@ -1,97 +1,82 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import PasswordInput from "../common/forms/PasswordInput.jsx";
+import { useForm } from "react-hook-form";
+import PasswordInput from "../common/input/passwordInput";
+import Input from "../common/input";
 import "./LoginComponent.scss";
 
+//TODO: Add constants, add spinner, refactoring fetch function
 const Login = ({ apiEndpoint }) => {
   const navigate = useNavigate();
   const [notification, setNotification] = useState(null);
   const [key, setKey] = useState(1);
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isLoading },
+  } = useForm({mode: 'onChange'});
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post(apiEndpoint, formData);
-
-      const tokens = {
-        access: response.data.access,
-        refresh: response.data.refresh,
-      };
-
-      localStorage.setItem("tokens", JSON.stringify(tokens));
-
-      setNotification({
-        type: "success",
-        text: "Login successful!",
-      });
-
-      delay(navigate, "/", 1000);
-    } catch (error) {
-      setNotification({
-        type: "error",
-        text: "Username or password are invalid, please try another",
-      });
-      setKey(key + 1);
+  const onSubmit = useCallback(
+    async (data) => {
+      try {
+        const response = await axios.post(apiEndpoint, data);
+        const tokens = {
+          access: response.data.access,
+          refresh: response.data.refresh,
+        };
+  
+        localStorage.setItem("tokens", JSON.stringify(tokens));
+  
+        setNotification({
+          type: "success",
+          text: "Авторизация прошла успешно!",
+        });
+  
+        delay(navigate, "/", 1000);
+      } catch (error) {
+        console.log(error);
+        setNotification({
+          type: "error",
+          text: "Имя пользователя или пароль недействительны, попробуйте ещё раз.",
+        });
+        setKey(key + 1);
+      }
     }
-  };
+  )
 
   return (
     <section className="login">
-      {notification && (
-        <Notification
-          type={notification.type}
-          text={notification.text}
-          count={key}
-        />
-      )}
-      <div className="login__form">
-        <div className="logo"></div>
-        <div className="form">
+      {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
+      <div className="form__wrapper">
+        <div className="form__logo"></div>
+        <div className="form__main">
           <div className="form__header">
             <h1 className="form__title">Вход</h1>
           </div>
-          <form onSubmit={handleFormSubmit}>
-            <label className="input__field">
-              Введите ваш юзернейм
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleInputChange}
-                required
-                placeholder="Акылай"
-              />
-            </label>
-            <label className="input__field">
-              Введите пароль
-              <PasswordInput
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-              />
-            </label>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
+            <Input 
+              label='Введите адрес электронной почты'
+              name="email"
+              type="email"
+              required
+              register={register}
+              placeholder="Акылай"
+              error={errors.email}
+            />
+            <PasswordInput
+              label='Введите пароль'
+              name="password"
+              register={register}
+              required
+              placeholder="********"
+              error={errors.password}
+            />
             <div className="form__footer">
-              <button
-                className="button__submit"
-                onClick={handleFormSubmit}
-                type="submit"
-              >
+              <button className="button__submit" type="submit" disabled={isLoading}>
                 Войти
               </button>
               <Link to="/forgot" className="login__forgot">

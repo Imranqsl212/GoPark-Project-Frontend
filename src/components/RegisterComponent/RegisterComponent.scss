@@ -1,25 +1,9 @@
 @import '../../styles/variables.scss';
 
 .register {
-    padding: 150px 25px;
-    &__form {
-        display: flex;
-        justify-content: space-around;
-        justify-items: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 40px;
-    }
-    @media (max-width: 640px) {
-        padding: 24px 0;
-    }
-}
-.have__account{
-    opacity: 0.7;
-    cursor: pointer;
-}
-.have__account:hover{
-    opacity: 0.7;
-    cursor: pointer; 
-    text-decoration: underline;
+    padding: 25px;
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }

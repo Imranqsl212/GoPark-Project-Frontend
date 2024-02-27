@@ -1,11 +1,25 @@
+
 .form {
-    display: flex;
-    flex-direction: column;
-    max-width: 342px;
-    gap: 32px;
-    font-size: 14px;
-    font-weight: 400;
-    width: 342px;
+    &__wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+    &__main {
+        display: flex;
+        flex-direction: column;
+        max-width: 342px;
+        gap: 32px;
+        font-size: 14px;
+        font-weight: 400;
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+    }
     &__header {
         display: flex;
         flex-direction: column;
@@ -17,11 +31,6 @@
     }
     &__descr {
         line-height: 140%;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
     }
     &__footer {
         display: flex;
@@ -35,8 +44,8 @@
         font-size: 18px;
         font-weight: 600;
         line-height: 100%;
+        color: $main-color;
         a {
-            color: $main-color;
             font-size: 18px;
             font-weight: 600;
             line-height: 100%;
@@ -44,6 +53,20 @@
             &:hover {
                 text-decoration: underline;
             }
+        }
+    }
+    &__logo {
+        width: 394px;
+        height: 456px;
+        background: url('../assets/images/logo.svg') center (center/contain) no-repeat;
+        @media (max-width: 1024px) {
+            width: 200px;
+            height: 300px;
+        }
+        @media (max-width: 640px) {
+            background: url('../assets/images/logo-mini.svg') left (center/contain) no-repeat;
+            width: 342px;
+            height: 41px;
         }
     }
 }
