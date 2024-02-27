@@ -1,12 +1,12 @@
-import { useState, useCallback } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useState, useCallback, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import PasswordInput from "../common/forms/input/passwordInput";
-import Input from "../common/forms/input/index.jsx";
+import PasswordInput from "../common/input/passwordInput";
+import Input from "../common/input";
+
 import "./RegisterComponent.scss";
 
 const Register = ({ apiEndpoint }) => {
@@ -16,8 +16,12 @@ const Register = ({ apiEndpoint }) => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isLoading },
   } = useForm({mode: 'onChange'});
+
+  const password = useRef({})
+  password.current = watch('password', '')
 
   const onSubmit = useCallback(
     async (data) => {
@@ -98,6 +102,7 @@ const Register = ({ apiEndpoint }) => {
               required
               placeholder="********"
               error={errors.confirmPassword}
+              validate={value => value === password.current || '*Пароли не совпадают'}
             />
             <div className="form__footer">
               <button type="submit" className="button__submit">
