@@ -1,7 +1,10 @@
 @import '../../styles/variables';
 
 .login {
-    padding: 150px 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
     font-weight: 400;
     line-height: 100%;
     letter-spacing: 0%;
@@ -39,7 +42,6 @@
     &__register {
         font-size: 20px;
         opacity: 0.5 ;
-
     }
     @media (max-width: 640px) {
         padding: 24px 0;

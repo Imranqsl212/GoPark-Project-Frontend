@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import PasswordInput from "../common/forms/PasswordInput.jsx";
+import PasswordInput from "../common/forms/passwordInput";
 import "./RegisterComponent.scss";
 
 const Register = ({ apiEndpoint }) => {
@@ -120,7 +120,6 @@ const Register = ({ apiEndpoint }) => {
               <button
                 type="submit"
                 className="button__submit"
-                onClick={handleFormSubmit}
               >
                 Зарегистрироваться
               </button>

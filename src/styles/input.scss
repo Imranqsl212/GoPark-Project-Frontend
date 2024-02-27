@@ -1,14 +1,11 @@
 .input {
-    display: flex;
-    flex-direction: column;
     font-size: 14px;
     font-weight: 400;
-    gap: 24px;
+    position: relative;
     &__field {
         display: flex;
         flex-direction: column;
         gap: 12px;
-        position: relative;
         input {
             height: 52px;
             background-color: rgb(249, 255, 251);

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Input from "../input";
 
-const PasswordInput = ({ name, value, onChange }) => {
+const PasswordInput = ({ name, label, register, error, placeholder }) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const onShowePassword = () => {
@@ -8,16 +9,15 @@ const PasswordInput = ({ name, value, onChange }) => {
     }
 
     return (
-        <>
-            <input
-                type={ showPassword ? 'text' : 'password' }
-                name={name}
-                value={value}
-                onChange={onChange}
-                required
-                placeholder="********"
-                minLength={8}
-                maxLength={16}
+        <div className="input">
+            <Input 
+              label={label}
+              name={name}
+              type={showPassword ? 'text' : 'password'}
+              required
+              register={register}
+              placeholder={placeholder}
+              error={error}
             />
             <button type="button" className="input__show-btn" onClick={onShowePassword}>
                 <svg width="22.105255" height="24.000000" viewBox="0 0 22.1053 24" fill="none">
@@ -32,7 +32,7 @@ const PasswordInput = ({ name, value, onChange }) => {
                     </g>
                 </svg>
             </button>
-        </>
+        </div>
     )
 }
 
