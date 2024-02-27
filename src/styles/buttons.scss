@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .button {
     &__submit {
         border-radius: 10px;
@@ -6,6 +8,14 @@
         width: 342px;
         font-size: 20px;
         color: $white-color;
-        transition: 0.3s transform;
+        transition: all 0.3s ease;
+        &:hover {
+            box-shadow:  0 0 30px 0 rgba($main-color, 0.5);
+        }
+        &:focus {
+            background-color: rgba($main-color, 0.8);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba($main-color, 0.5); 
+        }
     }
 }

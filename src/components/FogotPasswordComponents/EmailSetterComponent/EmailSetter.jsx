@@ -1,26 +1,30 @@
 import  { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { delay } from "../../../additionals/delay.js";
 import { useNavigate } from "react-router-dom";
-import './EmailSetter.css'
+import Input from "../../common/input/index.jsx";
+import './EmailSetter.scss'
 
 const EmailSubmission = ({ apiEndpoint }) => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
   const [notification, setNotification] = useState(null);
   const [key, setKey] = useState(1);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isLoading },
+  } = useForm({mode: 'onChange'});
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
 
     try {
-      const response = await axios.post(apiEndpoint, {
-        email,
-      });
+      const response = await axios.post(apiEndpoint, data);
 
       if (response.status === 200) {
-        localStorage.setItem("email", email);
+        localStorage.setItem("email", data);
         setNotification({
           type: "success",
           text: "Email entered successfully!",
@@ -40,26 +44,36 @@ const EmailSubmission = ({ apiEndpoint }) => {
   };
 
   return (
-    <div>
-      {notification && (
-        <Notification
-          type={notification.type}
-          text={notification.text}
-          count={key}
-        />
-      )}
-      <h1>Email Submission</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button onClick={handleSubmit} type="submit">Submit</button>
-      </form>
+    <section className="forgot">
+    {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
+    <div className="form__wrapper">
+      <div className="form__logo"></div>
+      <div className="form__main">
+        <div className="form__header">
+          <h1 className="form__title">Сброс пароля</h1>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
+          <Input 
+            label='Введите адрес электронной почты'
+            name="email"
+            type="email"
+            required
+            register={register}
+            placeholder="akylai@gmail.com"
+            error={errors.email}
+          />
+          <div className="form__footer">
+            <button className="button__submit" type="submit" disabled={isLoading}>
+              Сбросить пароль?
+            </button>
+            <Link to="/log" className="forgot__enter">
+              Войти
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
+  </section>
   );
 };
 
