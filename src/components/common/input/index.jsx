@@ -11,6 +11,7 @@ const Input = ({
     type = 'text',
     validate,
     disabled,
+    maxLenght,
 }) => {
 
   return (
@@ -32,6 +33,7 @@ const Input = ({
             })}
             placeholder={placeholder}
             disabled={disabled}
+            maxLenght='4'
         />
         {error && ( 
             <div className='input__error'>
