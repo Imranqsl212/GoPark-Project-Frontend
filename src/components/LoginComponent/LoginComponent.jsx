@@ -51,9 +51,9 @@ const Login = ({ apiEndpoint }) => {
   return (
     <section className="login">
       {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
-      <div className="login__form">
-        <div className="logo"></div>
-        <div className="form">
+      <div className="form__wrapper">
+        <div className="form__logo"></div>
+        <div className="form__main">
           <div className="form__header">
             <h1 className="form__title">Вход</h1>
           </div>

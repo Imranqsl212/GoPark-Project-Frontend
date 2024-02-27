@@ -52,9 +52,9 @@ const Register = ({ apiEndpoint }) => {
 
   return (
     <section className="register">
-      <div className="register__form">
+      <div className="form__wrapper">
         <div className="logo"></div>
-        <div className="form">
+        <div className="form__main">
           <div className="form__header">
             <h1 className="form__title">Регистрация</h1>
             <p className="form__descr">

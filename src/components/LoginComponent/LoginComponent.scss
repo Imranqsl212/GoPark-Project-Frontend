@@ -4,37 +4,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: 0%;
-    &__form {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 40px;
-    }
-    &__btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        border-radius: 10px;
-        padding: 20px 32px 20px 32px;
-        width: 342px;
-        background-color: $bg-main-color;
-        border: 1px solid $main-color;
-        p {
-            font-size: 20px;
-            color: $main-color;
-        }
-        img {
-            width: 17px;
-            height: 17px;
-            object-fit: contain;
-        }
-    }
+    min-height: 100vh;
     &__forgot {
         font-size: 18px;
         opacity: 0.7;
@@ -42,8 +12,5 @@
     &__register {
         font-size: 20px;
         opacity: 0.5 ;
-    }
-    @media (max-width: 640px) {
-        padding: 24px 0;
     }
 }
