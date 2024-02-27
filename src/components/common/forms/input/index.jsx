@@ -1,3 +1,5 @@
+import './input.scss';
+
 
 const Input = ({
     name,
@@ -23,7 +25,7 @@ const Input = ({
                 ? {
                     pattern: {
                       value: /\S+@\S+\.\S+/,
-                      message: 'Введите, пожалуйста, действительный адрес электронной почты',
+                      message: '*Введите, пожалуйста, действительный адрес электронной почты',
                     },
                   }
                 : {}),
@@ -32,9 +34,9 @@ const Input = ({
             disabled={disabled}
         />
         {error && ( 
-            <div>
+            <div className='input__error'>
               {!error?.message && error?.type === 'required'
-                  ? 'Обязательное поле'
+                  ? '*Обязательное поле'
                   : error?.message}
             </div>
         )}

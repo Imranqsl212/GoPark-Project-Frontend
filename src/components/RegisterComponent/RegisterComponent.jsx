@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import PasswordInput from "../common/forms/passwordInput";
+import PasswordInput from "../common/forms/input/passwordInput";
 import Input from "../common/forms/input/index.jsx";
 import "./RegisterComponent.scss";
 
@@ -53,7 +53,7 @@ const Register = ({ apiEndpoint }) => {
   return (
     <section className="register">
       <div className="form__wrapper">
-        <div className="logo"></div>
+        <div className="form__logo"></div>
         <div className="form__main">
           <div className="form__header">
             <h1 className="form__title">Регистрация</h1>

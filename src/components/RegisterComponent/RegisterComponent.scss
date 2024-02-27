@@ -6,11 +6,4 @@
     display: flex;
     justify-content: center;
     align-items: center; 
-    &__form {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 40px;
-    }
 }

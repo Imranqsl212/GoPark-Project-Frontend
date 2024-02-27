@@ -1,3 +1,5 @@
+@import '../../../../styles/variables.scss';
+
 .input {
     font-size: 14px;
     font-weight: 400;
@@ -23,5 +25,9 @@
         right: 24px;
         cursor: pointer;
         background-color: white;
+    }
+    &__error {
+        font-size: 12px;
+        color: $red-color;
     }
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Input from "../input";
+import Input from "..";
+import '../input.scss';
 
 const PasswordInput = ({ name, label, register, error, placeholder }) => {
     const [showPassword, setShowPassword] = useState(false);
