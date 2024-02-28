@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { delay } from "../../../additionals/delay.js";
-import Input from "../../common/input";
+import { Buttons, Button, Form, Input, Links, LinkItem } from "../../common";
 
 import './OTP-Checker-component.scss'
 
@@ -50,34 +49,28 @@ const OTPVerification = ({ apiEndpoint }) => {
   return (
     <section className="otp">
       {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
-      <div className="form__wrapper">
-        <div className="form__logo"></div>
-        <div className="form__main">
-          <div className="form__header"> 
-            <h1 className="form__title">Верификация</h1>
-            <p className="form__descr">Мы отправили код подтверждение на ваш email.</p>
-          </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Input 
-              label='Введите код подтверждение '
-              name="otp"
-              type="number"
-              required
-              register={register}
-              placeholder="0000"
-              validate={value => value.length < 5 || '*Укажите четыре цифры'}
-              error={errors.otp}
-            />
-            <div className="form__footer">  
-              <button className="button__submit" type="submit">Отправить</button>
-              <div className="form__forgot">
-                <p>Не пришел код?</p>
-                <Link to="/forgot">Отправить повторно</Link>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <Form 
+        onSubmit={handleSubmit(onSubmit)} 
+        title='Верификация' 
+        descr='Мы отправили код подтверждение на ваш email.'
+      >
+        <Input 
+          label='Введите код подтверждение '
+          name="otp"
+          type="number"
+          required
+          register={register}
+          placeholder="0000"
+          validate={value => value.length < 5 || '*Укажите четыре цифры'}
+          error={errors.otp}
+        />
+        <Buttons>  
+          <Button title="Отправить"/>
+          <Links title='Не пришел код?'>
+            <LinkItem to='forgot' name='Отправить повторно' />
+          </Links>
+        </Buttons>
+      </Form>
     </section>
   );
 };

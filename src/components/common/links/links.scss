@@ -1,0 +1,12 @@
+@import '../../../styles/variables.scss';
+
+.links {
+    &__wrapper {
+        display: flex;
+        gap: 5px;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 100%;
+        color: $main-color;
+    }
+}
