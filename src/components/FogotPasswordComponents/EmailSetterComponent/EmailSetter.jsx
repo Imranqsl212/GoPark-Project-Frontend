@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -19,16 +19,15 @@ const EmailSubmission = ({ apiEndpoint }) => {
     formState: { errors },
   } = useForm({mode: 'onChange'});
 
-  const onSubmit = async (data) => {
-
+  const onSubmit = useCallback(async (data) => {
     try {
       const response = await axios.post(apiEndpoint, data);
 
       if (response.status === 200) {
-        localStorage.setItem("email", data);
+        localStorage.setItem("email", data.email);
         setNotification({
           type: "success",
-          text: "Email entered successfully!",
+          text: "Электронная почта введена успешно!",
         });
 
         delay(navigate, "/otp", 900);
@@ -37,12 +36,12 @@ const EmailSubmission = ({ apiEndpoint }) => {
       console.error("Error submitting email:", error);
       setNotification({
         type: "error",
-        text: "Invalid email entered",
+        text: "Введен неверный адрес электронной почты",
       });
 
       setKey(key + 1);
     }
-  };
+  }, []);
 
   return (
     <section className="forgot">
