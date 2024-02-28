@@ -1,14 +1,10 @@
 .link {
-    &__forgot {
+    &__primary {
         font-size: 18px;
         opacity: 0.7;
     }
-    &__register {
+    &__secondary {
         font-size: 20px;
         opacity: 0.5 ;
-    }
-    &__enter {
-        font-size: 16px;
-        opacity: 0.7;
     }
 }

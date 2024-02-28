@@ -58,7 +58,7 @@ const EmailSubmission = ({ apiEndpoint }) => {
         />
         <Buttons>
           <Button title="Сбросить пароль?" />
-          <LinkItem to="log" name='Войти' styleItem="enter" />
+          <LinkItem to="log" name='Войти' styleItem="secondary" />
         </Buttons>
       </Form>
   </section>
