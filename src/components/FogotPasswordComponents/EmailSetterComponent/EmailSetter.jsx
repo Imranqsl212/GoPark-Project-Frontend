@@ -1,11 +1,12 @@
 import  { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import axios from "axios";
+
 import Notification from "../../../components/Notification/Notifications.jsx";
 import { delay } from "../../../additionals/delay.js";
-import { useNavigate } from "react-router-dom";
-import Input from "../../common/input/index.jsx";
+import { Buttons, Button, Form, Input, LinkItem } from "../../common";
+
 import './EmailSetter.scss'
 
 const EmailSubmission = ({ apiEndpoint }) => {
@@ -15,7 +16,7 @@ const EmailSubmission = ({ apiEndpoint }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors },
   } = useForm({mode: 'onChange'});
 
   const onSubmit = async (data) => {
@@ -45,34 +46,22 @@ const EmailSubmission = ({ apiEndpoint }) => {
 
   return (
     <section className="forgot">
-    {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
-    <div className="form__wrapper">
-      <div className="form__logo"></div>
-      <div className="form__main">
-        <div className="form__header">
-          <h1 className="form__title">Сброс пароля</h1>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
-          <Input 
-            label='Введите адрес электронной почты'
-            name="email"
-            type="email"
-            required
-            register={register}
-            placeholder="akylai@gmail.com"
-            error={errors.email}
-          />
-          <div className="form__footer">
-            <button className="button__submit" type="submit" disabled={isLoading}>
-              Сбросить пароль?
-            </button>
-            <Link to="/log" className="forgot__enter">
-              Войти
-            </Link>
-          </div>
-        </form>
-      </div>
-    </div>
+      {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
+      <Form onSubmit={handleSubmit(onSubmit)} title='Сброс пароля'>
+        <Input 
+          label='Введите адрес электронной почты'
+          name="email"
+          type="email"
+          required
+          register={register}
+          placeholder="akylai@gmail.com"
+          error={errors.email}
+        />
+        <Buttons>
+          <Button title="Сбросить пароль?" />
+          <LinkItem to="log" name='Войти' styleItem="enter" />
+        </Buttons>
+      </Form>
   </section>
   );
 };

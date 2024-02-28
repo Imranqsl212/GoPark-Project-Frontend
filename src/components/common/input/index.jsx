@@ -1,5 +1,6 @@
-import './input.scss';
+import PasswordInput from './passwordInput';
 
+import './input.scss';
 
 const Input = ({
     name,
@@ -11,7 +12,6 @@ const Input = ({
     type = 'text',
     validate,
     disabled,
-    maxLenght,
 }) => {
 
   return (
@@ -33,7 +33,6 @@ const Input = ({
             })}
             placeholder={placeholder}
             disabled={disabled}
-            maxLenght='4'
         />
         {error && ( 
             <div className='input__error'>
@@ -46,4 +45,4 @@ const Input = ({
   )
 }
 
-export default Input;
+export {Input, PasswordInput};

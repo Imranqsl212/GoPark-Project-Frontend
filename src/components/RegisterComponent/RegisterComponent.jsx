@@ -1,11 +1,10 @@
 import { useState, useCallback, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Notification from "../../components/Notification/Notifications.jsx";
 import { delay } from "../../additionals/delay.js";
-import PasswordInput from "../common/input/passwordInput";
-import Input from "../common/input";
+import { Buttons, Button, Form, Input, PasswordInput, Links, LinkItem } from "../common";
 
 import "./RegisterComponent.scss";
 
@@ -55,32 +54,25 @@ const Register = ({ apiEndpoint }) => {
   )
 
   const validatePassword = value => 
-    value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/) ? true : 
-    '*Пароль должен содержать минимум 8 символов, хотя бы одну большую букву, одну маленькую букву, один знак и только латинские буквы';
-
+  value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/) ? true : 
+  '*Пароль должен содержать минимум 8 символов, хотя бы одну большую букву, одну маленькую букву, один знак и только латинские буквы';
 
   return (
     <section className="register">
-      <div className="form__wrapper">
-        <div className="form__logo"></div>
-        <div className="form__main">
-          <div className="form__header">
-            <h1 className="form__title">Регистрация</h1>
-            <p className="form__descr">
-              Заполните регистрационные данные. Это займет пару минут.Все, что
-              вам нужно, это адрес электронной почты
-            </p>
-          </div>
           {notification && (<Notification type={notification.type} text={notification.text} count={key} />
           )}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <Form 
+            onSubmit={handleSubmit(onSubmit)} 
+            title='Регистрация' 
+            descr='Заполните регистрационные данные. Это займет пару минут.Все, что вам нужно, это адрес электронной почты'
+          >
             <Input 
               label='Введите адрес электронной почты'
               name="email"
               type="email"
               required
               register={register}
-              placeholder="Акылай"
+              placeholder="akylai@gmail.com"
               error={errors.email}
             />
             <Input 
@@ -89,7 +81,7 @@ const Register = ({ apiEndpoint }) => {
               type="text"
               required
               register={register}
-              placeholder="Акылай"
+              placeholder="Akylai"
               error={errors.username}
             />
             <PasswordInput
@@ -110,18 +102,13 @@ const Register = ({ apiEndpoint }) => {
               error={errors.confirmPassword}
               validate={value => value === password.current || '*Пароли не совпадают'}
             />
-            <div className="form__footer">
-              <button type="submit" className="button__submit">
-                Зарегистрироваться
-              </button>
-              <div className="form__forgot">
-                <p>Уже есть аккаунт?</p>
-                <Link to="/log">Войти</Link>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+            <Buttons>
+              <Button title="Зарегистрироваться" />
+              <Links title='Уже есть аккаунт?'>
+                <LinkItem to="log" name='Войти'/>
+              </Links>
+            </Buttons>
+          </Form>
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Input from "..";
+import {Input} from "..";
 import '../input.scss';
 
 const PasswordInput = ({ name, label, register, error, placeholder, validate }) => {
