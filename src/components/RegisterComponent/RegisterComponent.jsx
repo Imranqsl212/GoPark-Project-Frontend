@@ -50,7 +50,7 @@ const Register = ({ apiEndpoint }) => {
   
         setKey(key + 1);
       }
-    }
+    }, []
   )
 
   const validatePassword = value => 

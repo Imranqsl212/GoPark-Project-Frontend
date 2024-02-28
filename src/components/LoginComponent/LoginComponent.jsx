@@ -1,56 +1,39 @@
-import { useState, useCallback } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuthService from "../../services/authService.js";
 import Notification from "../../components/Notification/Notifications.jsx";
-import { delay } from "../../additionals/delay.js";
 import { Buttons, Button, Form, Input, PasswordInput, LinkItem } from "../common";
 
 import "./LoginComponent.scss";
 
-//TODO: Add constants, add spinner, refactoring fetch function, create button component last
-const Login = ({ apiEndpoint }) => {
-  const navigate = useNavigate();
+const Login = () => {
   const [notification, setNotification] = useState(null);
-  const [key, setKey] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { loginAsync } = useAuthService();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors },
   } = useForm({mode: 'onChange'});
 
-  const onSubmit = useCallback(
-    async (data) => {
-      try {
-        const response = await axios.post(apiEndpoint, data);
-        const tokens = {
-          access: response.data.access,
-          refresh: response.data.refresh,
-        };
-  
-        localStorage.setItem("tokens", JSON.stringify(tokens));
-  
-        setNotification({
-          type: "success",
-          text: "Авторизация прошла успешно!",
-        });
-  
-        delay(navigate, "/", 1000);
-      } catch (error) {
-        console.log(error);
-        setNotification({
-          type: "error",
-          text: "Имя пользователя или пароль недействительны, попробуйте ещё раз.",
-        });
-        setKey(key + 1);
-      }
-    }
-  )
+  const onGetNotification = useCallback((notification) => setNotification(notification), []);
+
+  const onRequets = (data) => {
+    loginAsync(data)
+    .then(onGetNotification)
+    .then(() => setIsLoading(false));
+  }
+
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    onRequets(data);
+  }
 
   return (
     <section className="login">
-      {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
+      {notification && (<Notification type={notification.type} text={notification.text} count={notification.key} />)}
       <Form onSubmit={handleSubmit(onSubmit)} title='Вход'>
         <Input 
           label='Введите адрес электронной почты'
@@ -70,7 +53,7 @@ const Login = ({ apiEndpoint }) => {
           error={errors.password}
         />
         <Buttons>
-          <Button title='Войти' />
+          <Button title={isLoading ? 'Загрузка' : 'Войти'} disabled={isLoading} />
           <LinkItem to="forgot" name='Забыли пароль?' styleItem="forgot"/>
           <LinkItem to="reg" name='Регистрация' styleItem="register" />
         </Buttons>

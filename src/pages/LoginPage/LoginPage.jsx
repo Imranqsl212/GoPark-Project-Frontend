@@ -2,7 +2,7 @@ import Login from '../../components/LoginComponent/LoginComponent';
 
 const LoginPage = () => {
 
-  return <Login apiEndpoint="https://defteam.onrender.com/api-auth/login/" />;
+  return <Login />;
 };
 
 export default LoginPage;

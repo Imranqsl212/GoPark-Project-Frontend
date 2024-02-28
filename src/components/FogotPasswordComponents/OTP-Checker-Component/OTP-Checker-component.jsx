@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ const OTPVerification = ({ apiEndpoint }) => {
     formState: { errors },
   } = useForm({mode: 'onChange'});
 
-  const onSubmit = async (data) => {
+  const onSubmit = useCallback(async (data) => {
     try {
       const email = localStorage.getItem("email");
       const response = await axios.post(apiEndpoint, {
@@ -44,7 +44,7 @@ const OTPVerification = ({ apiEndpoint }) => {
 
       setKey(key + 1);
     }
-  };
+  }, []);
 
   return (
     <section className="otp">
