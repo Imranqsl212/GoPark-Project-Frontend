@@ -1,0 +1,30 @@
+
+.header{
+    padding: 30px 100px;
+    background-color: white;
+
+}
+.header__nav{
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    }
+
+.header__ul{
+display: flex;
+align-items: center;
+flex-direction: row;
+column-gap: 30px;
+}
+.header__box{
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+.header__li:hover{
+    color: #53D269;
+    cursor: pointer;
+    transition: 0.2s;
+}
