@@ -1,17 +1,14 @@
-import { useCallback, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
-import { delay } from "../../../additionals/delay.js";
 import { Buttons, Button, Form, Input, Links, LinkItem } from "../../common";
+import { useAuthService } from '../../../services/authService';
 
 import './OTP-Checker-component.scss'
 
-const OTPVerification = ({ apiEndpoint }) => {
-  const navigate = useNavigate();
-  const [notification, setNotification] = useState(null);
-  const [key, setKey] = useState(1);
+const OTPVerification = () => {
+  const [isLoading, setLoading] = useState(false);
+  const { sendOtpVerificationAsync } = useAuthService();
 
   const {
     register,
@@ -19,31 +16,15 @@ const OTPVerification = ({ apiEndpoint }) => {
     formState: { errors },
   } = useForm({mode: 'onChange'});
 
-  const onSubmit = useCallback(async (data) => {
-    try {
-      const email = localStorage.getItem("email");
-      const response = await axios.post(apiEndpoint, {
-        email: email,
-        otp: data.otp,
-      });
+  const request = (data) => {
+    sendOtpVerificationAsync(data)
+    .then(() => setLoading(false))
+  }
 
-      if (response.status === 200) {
-        setNotification({
-          type: "success",
-          text: "Код подтверждения принят!",
-        });
-
-        delay(navigate, "/reset-password", 900);
-      }
-    } catch (error) {
-      setNotification({
-        type: "error",
-        text: "Введен неверный код подтверждения!",
-      });
-
-      setKey(key + 1);
-    }
-  }, []);
+  const onSubmit = () => {
+    setLoading(true);
+    request(data);
+  };
 
   return (
     <section className="otp">
@@ -63,7 +44,7 @@ const OTPVerification = ({ apiEndpoint }) => {
           error={errors.otp}
         />
         <Buttons>  
-          <Button title="Отправить"/>
+          <Button title={ isLoading ? `Отправка...` : "Отправить"} disabled={isLoading}/>
           <Links title='Не пришел код?'>
             <LinkItem to='forgot' name='Отправить повторно' />
           </Links>

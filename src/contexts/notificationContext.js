@@ -26,15 +26,9 @@ export const NotificationProvider = ({ children }) => {
     setKey(prevKey => prevKey + 1); 
   }
 
-  const resetNotification = () => {
-    console.log('reset')
-    setNotification(null);
-    console.log(notification)
-  };
-
   return (
     <NotificationContext.Provider
-      value={{ notification, setErrorNotification, setSuccessNotification, resetNotification }}
+      value={{ notification, setErrorNotification, setSuccessNotification }}
     >
       {children}
     </NotificationContext.Provider>

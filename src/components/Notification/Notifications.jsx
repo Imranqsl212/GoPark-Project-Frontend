@@ -3,7 +3,7 @@ import  { useContext, useEffect } from "react";
 import { NotificationContext } from '../../contexts/notificationContext'
 
 const Notification = ({ type, text, count = 0 }) => {
-  const { notification, resetNotification } = useContext(NotificationContext);
+  const { notification } = useContext(NotificationContext);
 
   const showToast = () => {
     switch (notification.type) {
@@ -20,15 +20,6 @@ const Notification = ({ type, text, count = 0 }) => {
 
   useEffect(() => {
     showToast();
-
-    const resetNotificationTimer = setTimeout(() => {
-      resetNotification();
-    }, 8000);
-
-    return () => {
-      clearTimeout(resetNotificationTimer);
-    };
-
   }, [type, text, count]);
 
   return <Toaster position="top-right" />;

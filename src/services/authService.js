@@ -54,7 +54,7 @@ const useAuthService = () => {
 
     const resetPasswordEmailAsync = async (data) => {
         const response = await request(`${_apiBase}/send_email/`, data);
-        console.log('resetPasswordEmailAsync')
+
         if (response.status !== 200) {
             setErrorNotification("Введен неверный адрес электронной почты!");
             return;
@@ -65,11 +65,28 @@ const useAuthService = () => {
         navigate("/otp");
     }
 
+    const sendOtpVerificationAsync = async(data) => {
+        const email = localStorage.getItem("email");
+        const response = await request(`${_apiBase}/send_email/`, {
+          email: email,
+          otp: data.otp,
+        });
+  
+        if (response.status === 200) {
+            setSuccessNotification("Код подтверждения принят!");
+            navigate("/reset-password");
+            return;
+        }
+
+        setErrorNotification("Введен неверный код подтверждения!");
+    }
+
     return {
         loginAsync,
         registerAsync,
         logout,
         resetPasswordEmailAsync,
+        sendOtpVerificationAsync,
     }
 }
 
