@@ -1,51 +1,33 @@
-import  { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import  { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 
-import Notification from "../../../components/Notification/Notifications.jsx";
-import { delay } from "../../../additionals/delay.js";
 import { Buttons, Button, Form, Input, LinkItem } from "../../common";
+import useAuthService from "../../../services/authService.js";
 
 import './EmailSetter.scss'
 
-const EmailSubmission = ({ apiEndpoint }) => {
-  const navigate = useNavigate();
-  const [notification, setNotification] = useState(null);
-  const [key, setKey] = useState(1);
+const EmailSubmission = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { resetPasswordEmailAsync } = useAuthService();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({mode: 'onChange'});
 
-  const onSubmit = useCallback(async (data) => {
-    try {
-      const response = await axios.post(apiEndpoint, data);
+  const request = (data) => {
+    resetPasswordEmailAsync(data)
+    .then(() => setIsLoading(false));
+  }
 
-      if (response.status === 200) {
-        localStorage.setItem("email", data.email);
-        setNotification({
-          type: "success",
-          text: "Электронная почта введена успешно!",
-        });
-
-        delay(navigate, "/otp", 900);
-      }
-    } catch (error) {
-      console.error("Error submitting email:", error);
-      setNotification({
-        type: "error",
-        text: "Введен неверный адрес электронной почты",
-      });
-
-      setKey(key + 1);
-    }
-  }, []);
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    request(data);
+  };
 
   return (
     <section className="forgot">
-      {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
       <Form onSubmit={handleSubmit(onSubmit)} title='Сброс пароля'>
         <Input 
           label='Введите адрес электронной почты'
@@ -57,7 +39,7 @@ const EmailSubmission = ({ apiEndpoint }) => {
           error={errors.email}
         />
         <Buttons>
-          <Button title="Сбросить пароль?" />
+          <Button title={ isLoading ? 'Отправка...' : "Сбросить пароль?"} disabled={isLoading} />
           <LinkItem to="log" name='Войти' styleItem="secondary" />
         </Buttons>
       </Form>

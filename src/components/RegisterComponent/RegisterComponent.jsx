@@ -1,18 +1,16 @@
-import { useState, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import Notification from "../../components/Notification/Notifications.jsx";
-import { delay } from "../../additionals/delay.js";
+
+import useAuthService from "../../services/authService.js";
 import { Buttons, Button, Form, Input, PasswordInput, Links, LinkItem } from "../common";
 
 import "./RegisterComponent.scss";
 
-//TODO: Add constants, add spinner, refactoring fetch function, create button component last
-const Register = ({ apiEndpoint }) => {
-  const navigate = useNavigate();
-  const [notification, setNotification] = useState(null);
-  const [key, setKey] = useState(1);
+//TODO: Add constants. Should add spinner?
+const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { registerAsync } = useAuthService();
+
   const {
     register,
     handleSubmit,
@@ -23,35 +21,21 @@ const Register = ({ apiEndpoint }) => {
   const password = useRef({})
   password.current = watch('password', '')
 
-  const onSubmit = useCallback(
-    async (data) => {
-      try {
-        const response = await axios.post(apiEndpoint, data);
-        const tokens = {
-          access: response.data.access,
-          refresh: response.data.refresh,
-        };
-  
-        localStorage.setItem("tokens", JSON.stringify(tokens));
-  
-        setNotification({
-          type: "success",
-          text: "Регистрация прошла успешно!",
-        });
-        
-        delay(navigate, "/", 1000);
-      } catch (error) {
-        console.error("Error during registration:", error.response.data);
-  
-        setNotification({
-          type: "error",
-          text: "Имя пользователя или пароль уже существуют. Попробуйте ещё раз!",
-        });
-  
-        setKey(key + 1);
-      }
-    }, []
-  )
+  const request = (data) => {
+    registerAsync(data)
+    .then(() => setIsLoading(false));
+  }
+
+  const onSubmit = (data) => {
+    const registerModel = {
+      email: data.email,
+      username: data.username,
+      password: data.password,
+    }
+
+    setIsLoading(true);
+    request(registerModel);
+  }
 
   const validatePassword = value => 
   value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/) ? true : 
@@ -59,8 +43,6 @@ const Register = ({ apiEndpoint }) => {
 
   return (
     <section className="register">
-          {notification && (<Notification type={notification.type} text={notification.text} count={key} />
-          )}
           <Form 
             onSubmit={handleSubmit(onSubmit)} 
             title='Регистрация' 
@@ -103,7 +85,7 @@ const Register = ({ apiEndpoint }) => {
               validate={value => value === password.current || '*Пароли не совпадают'}
             />
             <Buttons>
-              <Button title="Зарегистрироваться" />
+              <Button title={isLoading ? "Отправка..." : "Зарегистрироваться"} disabled={isLoading} />
               <Links title='Уже есть аккаунт?'>
                 <LinkItem to="log" name='Войти'/>
               </Links>

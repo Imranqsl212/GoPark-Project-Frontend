@@ -3,7 +3,6 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import Notification from "../../../components/Notification/Notifications.jsx";
 import { delay } from "../../../additionals/delay.js";
 import { Buttons, Button, Form, Input, Links, LinkItem } from "../../common";
 
@@ -48,7 +47,6 @@ const OTPVerification = ({ apiEndpoint }) => {
 
   return (
     <section className="otp">
-      {notification && (<Notification type={notification.type} text={notification.text} count={key} />)}
       <Form 
         onSubmit={handleSubmit(onSubmit)} 
         title='Верификация' 

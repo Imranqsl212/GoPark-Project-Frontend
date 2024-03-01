@@ -1,11 +1,11 @@
 import  { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Home from "./pages/HomePage/Home.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import Login from "./pages/LoginPage/LoginPage.jsx";
 import useAuthentication from "./additionals/CheckAuth.js";
 import ChangePassword from "./pages/ChangePasswordPage/ChangePasswordPage.jsx";
-
 import EmailSubmissionPage from "./pages/ForgotPassword/EmailSetter/EmailSubmissionPage.jsx";
 import OTPVerificationPage from "./pages/ForgotPassword/OtpChecker/OTPVerificationPage.jsx";
 import PasswordResetPage from "./pages/ForgotPassword/PasswordReseter/PasswordResetPage.jsx";

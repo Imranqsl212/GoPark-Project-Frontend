@@ -2,9 +2,7 @@ import EmailSubmissionPage from "../../../components/FogotPasswordComponents/Ema
 
 const MyEmailSubmissionPage = () => {
   return (
-    <EmailSubmissionPage
-      apiEndpoint="https://defteam.onrender.com/api-auth/send_email/"
-    />
+    <EmailSubmissionPage />
   );
 };
 

@@ -1,7 +1,7 @@
 import Register from '../../components/RegisterComponent/RegisterComponent';
 
 const RegisterPage = () => {
-  return <Register apiEndpoint="https://defteam.onrender.com/api-auth/register/" />;
+  return <Register />;
 };
 
 export default RegisterPage;
