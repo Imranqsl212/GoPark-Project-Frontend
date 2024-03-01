@@ -67,7 +67,7 @@ const useAuthService = () => {
 
     const sendOtpVerificationAsync = async(data) => {
         const email = localStorage.getItem("email");
-        const response = await request(`${_apiBase}/send_email/`, {
+        const response = await request(`${_apiBase}/check_otp/`, {
           email: email,
           otp: data.otp,
         });

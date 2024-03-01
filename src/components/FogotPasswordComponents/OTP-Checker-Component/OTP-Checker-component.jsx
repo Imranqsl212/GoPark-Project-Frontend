@@ -31,7 +31,7 @@ const OTPVerification = () => {
       <Form 
         onSubmit={handleSubmit(onSubmit)} 
         title='Верификация' 
-        descr='Мы отправили код подтверждение на ваш email.'
+        descr='Мы отправим код подтверждение на ваш email.'
       >
         <Input 
           label='Введите код подтверждение '
