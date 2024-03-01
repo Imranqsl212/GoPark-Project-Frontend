@@ -14,9 +14,9 @@ import Header from "./components/Header/Header.jsx";
 function App() {
   const { checkAuthentication } = useAuthentication();
 
-  // useEffect(() => {
-  //   checkAuthentication();
-  // }, []);
+  useEffect(() => {
+     checkAuthentication();
+  }, []);
 
   return (
     <div>
