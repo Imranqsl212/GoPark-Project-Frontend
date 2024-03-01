@@ -1,15 +1,13 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+
 import useAuthService from "../../services/authService.js";
-import Notification from "../../components/Notification/Notifications.jsx";
 import { Buttons, Button, Form, Input, PasswordInput, LinkItem } from "../common";
 
 import "./LoginComponent.scss";
 
 const Login = () => {
-  const [notification, setNotification] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const { loginAsync } = useAuthService();
 
   const {
@@ -18,11 +16,8 @@ const Login = () => {
     formState: { errors },
   } = useForm({mode: 'onChange'});
 
-  const onGetNotification = useCallback((notification) => setNotification(notification), []);
-
-  const onRequets = (data) => {
-    loginAsync(data)
-    .then(onGetNotification)
+  const onRequets = async (data) => {
+    await loginAsync(data)
     .then(() => setIsLoading(false));
   }
 
@@ -33,16 +28,15 @@ const Login = () => {
 
   return (
     <section className="login">
-      {notification && (<Notification type={notification.type} text={notification.text} count={notification.key} />)}
       <Form onSubmit={handleSubmit(onSubmit)} title='Вход'>
         <Input 
-          label='Введите адрес электронной почты'
-          name="email"
-          type="email"
+          label='Введите имя пользователя'
+          name="username"
+          type="text"
           required
           register={register}
           placeholder="Akylai"
-          error={errors.email}
+          error={errors.username}
         />
         <PasswordInput
           label='Введите пароль'
@@ -53,7 +47,7 @@ const Login = () => {
           error={errors.password}
         />
         <Buttons>
-          <Button title={isLoading ? 'Загрузка' : 'Войти'} disabled={isLoading} />
+          <Button title={isLoading ? 'Отправка...' : 'Войти'} disabled={isLoading} />
           <LinkItem to="forgot" name='Забыли пароль?' styleItem="primary"/>
           <LinkItem to="reg" name='Регистрация' styleItem="secondary" />
         </Buttons>

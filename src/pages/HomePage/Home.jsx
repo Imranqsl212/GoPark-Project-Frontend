@@ -17,8 +17,9 @@ const Home = () => {
       text: "Logged out successful!",
     });
 
-    delay(navigate, "/log", 866);
-  };
+  const onLogout = () => {
+    logout();
+  }
 
   return (
     <div>
