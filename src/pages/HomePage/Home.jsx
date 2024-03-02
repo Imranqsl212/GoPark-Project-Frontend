@@ -1,21 +1,10 @@
-import Notification from "../../components/Notification/Notifications.jsx";
-import { useState } from "react";
-import { delay } from "../../additionals/delay.js";
-import { useNavigate } from "react-router-dom";
-import homeImg from '../../assets/images/homeImg.png'
+import useAuthService from "../../services/authService.js";
+import homeImg from '../../assets/images/homeImg.png';
+
 import './Home.scss'
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [notification, setNotification] = useState(null);
-
-  const logout = async () => {
-    localStorage.removeItem("tokens");
-    localStorage.removeItem("userDetails");
-    setNotification({
-      type: "success",
-      text: "Logged out successful!",
-    });
+  const { logout } = useAuthService();
 
   const onLogout = () => {
     logout();
@@ -23,9 +12,6 @@ const Home = () => {
 
   return (
     <div>
-      {notification && (
-        <Notification type={notification.type} text={notification.text} />
-      )}
       {/* <h1>Home</h1>
       <button onClick={logout}>Logout</button> */}
       <div className="home">
@@ -40,6 +26,7 @@ const Home = () => {
       </div>
     </div>
   );
-};
+}
+  
 
 export default Home;
