@@ -27,7 +27,7 @@ function App() {
     <>
       <Header/>
       <Routes>
-        <Route path="/" element={<SearchCarPage />} />
+        <Route path="/" element={<CarsPage />} />
         <Route path="/reg" element={<RegisterPage />} />
         <Route path="/reg" element={<RegisterPage />} />
         <Route path="/log" element={<Login />} />
