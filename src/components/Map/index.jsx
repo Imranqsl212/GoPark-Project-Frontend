@@ -1,6 +1,7 @@
 import carImg from '../../assets/images/car.svg';
 import pinImg from '../../assets/images/ic-pin.svg';
 import filterImg from '../../assets/images/filter-Icon.svg'
+
 import './map.scss';
 
 const MapAdasd = () => {
@@ -18,7 +19,12 @@ const Map = () => {
       <MapAdasd />
       <section className='car'>
         <div className='car__block'>
-          <input className='car__input' type="text" placeholder='Введите адрес' />
+          <div className='car__input-wrapper'>
+            <input className='car__input' type="text" placeholder='Введите адрес' />
+            <button type="button" className="car__input-btn">
+                <img src={filterImg} alt='filter image' width={24} height={24} />
+            </button>
+          </div>
           <ul className='car__list'>
             <li className='car__item'>
               <div className='car__item-descr'>
@@ -167,7 +173,6 @@ const Map = () => {
           </ul>
         </div>
       </section>
-      
     </>
   )
 }
