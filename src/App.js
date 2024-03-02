@@ -11,13 +11,15 @@ import OTPVerificationPage from "./pages/ForgotPassword/OtpChecker/OTPVerificati
 import PasswordResetPage from "./pages/ForgotPassword/PasswordReseter/PasswordResetPage.jsx";
 import Toolbar from "./components/common/toolbar/Toolbar.jsx";
 import Header from "./components/Header/Header.jsx";
+import About from "./pages/AboutUsPage/AboutUsPage"
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 
 function App() {
   const { checkAuthentication } = useAuthentication();
 
-  useEffect(() => {
-     checkAuthentication();
-  }, []);
+  // useEffect(() => {
+  //    checkAuthentication();
+  // }, []);
 
   return (
     <>
@@ -25,11 +27,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reg" element={<RegisterPage />} />
+        <Route path="/reg" element={<RegisterPage />} />
         <Route path="/log" element={<Login />} />
         <Route path="/change" element={<ChangePassword />} />
         <Route path="/forgot" element={<EmailSubmissionPage />} />
         <Route path="/otp" element={<OTPVerificationPage />} />
         <Route path="/reset-password" element={<PasswordResetPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
       </Routes>
       <Toolbar />
     </>

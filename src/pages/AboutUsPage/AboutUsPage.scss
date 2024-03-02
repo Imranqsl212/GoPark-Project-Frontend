@@ -1,0 +1,42 @@
+.AboutUs{
+    .About-content{
+        background-image: url('../../assets/images/about/girl-using-smartphone-application-rent-carsharing-car-call-taxi\ 1.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        .about-block{
+            width: 48%;
+            margin-left: 100px;
+            height: auto;
+            padding: 32px;
+            border-radius: 8px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            row-gap: 24px;
+            .about-block-title{
+                font-size: 40px;
+                font-weight: 400;
+                line-height: 56px;
+            }
+            .about-block-subtitle{
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 28px;
+                text-align: left;
+                width: 519px;
+            }
+            .about-block-btn{
+                background: #53D269;
+                width: 197px;
+                height: 48px;
+                padding: 16px, 32px, 16px, 32px;
+                border-radius: 8px;
+                color: white;
+            }
+        }
+    }
+}
