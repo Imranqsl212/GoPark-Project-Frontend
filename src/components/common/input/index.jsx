@@ -4,14 +4,14 @@ import './input.scss';
 
 const Input = ({
     name,
-    label,
+    label = null,
     placeholder,
-    required,
-    register,
-    error,
+    required = null,
+    register = null,
+    error = null,
     type = 'text',
-    validate,
-    disabled,
+    validate = null,
+    disabled = false,
 }) => {
 
   return (

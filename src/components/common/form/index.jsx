@@ -1,9 +1,9 @@
 import './form.scss';
 
-const Form = ({ onSubmit, children, title, descr }) => {
+const Form = ({ onSubmit, children, title, descr, isLogo = true }) => {
     return (
       <div className="form__wrapper">
-        <div className="form__logo"></div>
+        {isLogo ? <div className="form__logo"></div> : null}
         <div className="form__main">
           <div className="form__header">
             <h1 className="form__title">{title}</h1>
