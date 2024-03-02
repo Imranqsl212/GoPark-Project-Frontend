@@ -1,11 +1,9 @@
 import React from 'react';
-import './Footer.scss'
-import { ReactComponent as Face } from '../../assets/images/ic_baseline-facebook.svg';
-import { ReactComponent as Inst } from '../../assets/images/ant-design_instagram-filled.svg';
-import { ReactComponent as Tele } from '../../assets/images/ic_baseline-telegram.svg';
-import { ReactComponent as Logo } from '../../assets/images/logo2.svg';
-
-import {tele} from '../../assets/images/ant-design_instagram-filled.svg';
+import '../Footer/Footer.scss'
+import  Face  from '../../assets/images/footer/ic_baseline-facebook.svg';
+import  Inst  from '../../assets/images/footer/ant-design_instagram-filled.svg';
+import  Tele  from '../../assets/images/footer/ic_baseline-telegram.svg';
+import Logo from '../../assets/images/footer/Frame 10.png';
 
 const Footer = () => {
     return (
@@ -13,7 +11,7 @@ const Footer = () => {
             <div className="container">
                 <div className="footer__box">
                   <div className="footer__text">
-                    <Logo/>
+                    <img src={Logo} alt="" />
                     <h1 className='footer__title'>Группа компаний «GoPark»</h1>
                     <h3 className='footer__book'>+ +996550578150</h3>
                     <h3 className='footer__subtitle'>support@gmail.com</h3>
@@ -28,9 +26,9 @@ const Footer = () => {
                   </ul> 
 
                   <div className="footer__icons">
-                    <Face/>
-                    <Inst/>
-                    <Tele/>
+                    <img src={Face} alt="" />
+                    <img src={Inst} alt="" />
+                    <img src={Tele} alt="" />
                   </div>
                 </div>
             </div>

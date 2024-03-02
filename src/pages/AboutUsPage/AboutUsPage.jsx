@@ -1,6 +1,7 @@
 import React from 'react';
 import '../AboutUsPage/AboutUsPage.scss'
 import Rich from '../../assets/images/about/rich.png' 
+import Footer from '../../components/Footer/Footer';
 
 function AboutUsPage(props) {
     return (
@@ -61,6 +62,9 @@ function AboutUsPage(props) {
                     </div>
                 </div>
             </div>
+            <footer>
+                <Footer/>
+            </footer>
         </div>
     );
 }
