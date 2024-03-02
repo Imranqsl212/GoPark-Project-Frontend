@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Buttons, Button, Form, Input, Links, LinkItem } from "../../common";
-import { useAuthService } from '../../../services/authService';
+import useAuthService from '../../../services/authService';
 
 import './OTP-Checker-component.scss'
 
@@ -21,7 +21,7 @@ const OTPVerification = () => {
     .then(() => setLoading(false))
   }
 
-  const onSubmit = () => {
+  const onSubmit = (data) => {
     setLoading(true);
     request(data);
   };
