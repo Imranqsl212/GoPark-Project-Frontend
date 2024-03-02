@@ -39,8 +39,8 @@ const OTPVerification = () => {
           type="number"
           required
           register={register}
-          placeholder="0000"
-          validate={value => value.length < 5 || '*Укажите четыре цифры'}
+          placeholder="000000"
+          validate={value => value.length < 7 || '*Укажите четыре цифры'}
           error={errors.otp}
         />
         <Buttons>  

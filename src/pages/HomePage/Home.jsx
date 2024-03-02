@@ -1,5 +1,5 @@
 import useAuthService from "../../services/authService.js";
-import homeImg from '../../assets/images/homeImg.png';
+import homeImg from '../../assets/images/poputka.jpg';
 
 import './Home.scss'
 
@@ -25,6 +25,5 @@ const Home = () => {
     </div>
   );
 }
-  
 
 export default Home;
