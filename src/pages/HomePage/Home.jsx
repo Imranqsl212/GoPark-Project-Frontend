@@ -18,9 +18,7 @@ const Home = () => {
             <p className="home__subtitle">Она предоставляет информацию о наличии свободных парковочных мест и помогает найти попутчиков, делая акцент на безопасности и устойчивости.</p>
             <button className="home__btn">Искать попутчика</button>
           </div>
-          <div className="home__img">
-          <img src={homeImg} alt=""/>
-          </div> */}
+          <img className="home__img" src={homeImg} alt=""/>
       </div>
     </div>
   );

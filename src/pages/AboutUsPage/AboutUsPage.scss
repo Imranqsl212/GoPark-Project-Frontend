@@ -1,0 +1,121 @@
+.AboutUs{
+    .about-us-complete-mode{
+        .About-content{
+            background-image: url('../../assets/images/about/girl-using-smartphone-application-rent-carsharing-car-call-taxi\ 1.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            .about-block{
+                width: 48%;
+                margin-left: 100px;
+                height: auto;
+                padding: 32px;
+                border-radius: 8px;
+                background: #FFFFFF;
+                display: flex;
+                flex-direction: column;
+                row-gap: 24px;
+                .about-block-title{
+                    font-size: 40px;
+                    font-weight: 400;
+                    line-height: 56px;
+                }
+                .about-block-subtitle{
+                    font-size: 20px;
+                    font-weight: 400;
+                    line-height: 28px;
+                    text-align: left;
+                    width: 519px;
+                }
+                @media(max-width: 727px){
+                    .about-block-subtitle{
+                        width: 100%;
+                    }
+                }
+                .about-block-btn{
+                    background: #53D269;
+                    width: 197px;
+                    height: 48px;
+                    padding: 16px, 32px, 16px, 32px;
+                    border-radius: 8px;
+                    color: white;
+                }
+            }
+            @media (max-width: 1062px){
+                .about-block{
+                    width: 70%;
+                }
+            }            
+        }
+        .About-content-part{
+            padding-bottom: 100px;
+            .about-content-mission{
+                display: flex;
+                padding-top: 100px;
+                justify-content: center;
+                column-gap: 54px;
+                .about-mission{
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 41px;
+                    .about-mission__title{
+                        font-size: 36px;
+                        font-weight: 400;
+                        line-height: 36px;    
+                    }
+                    .about-mission__subtitle{
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 22px;
+                    }
+                    .about-mission__percent{
+                        display: flex;
+                        column-gap: 24px;
+                        .about-mission__percent-block{
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 8px;
+                            .about-mission__percent-block_title{
+                                font-size: 32px;
+                                font-weight: 300;
+                                line-height: 32px;
+                            }
+                            .about-mission__percent-block_subtitle{
+                                font-size: 12px;
+                                font-weight: 300;
+                                line-height: 12px;
+                            }
+                        }
+                    }
+                    @media (max-width: 812px){
+                        .about-mission__percent{
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+            @media(max-width: 707px){
+                .about-content-mission{
+                    flex-direction: column;
+                    margin-left: 50px;
+                }
+            }   
+        }
+        @media(max-width: 572px){
+            .About-content-part{
+                width: 80%;
+            }
+            .about-mission-img{
+                display: none;
+            }
+        }   
+    }
+    @media(max-width: 612px){
+        footer{
+            display: none;
+        }
+    }
+}

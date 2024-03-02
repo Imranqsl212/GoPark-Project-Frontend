@@ -2,7 +2,6 @@ import { ReactComponent as Logo } from '../../assets/images/logo2.svg';
 import { ReactComponent as User } from '../../assets/images/user.svg';
 import { ReactComponent as Search } from '../../assets/images/search.svg';
 import { ReactComponent as Exit } from '../../assets/images/exit.svg';
-
 import useAuthService from '../../services/authService';
 
 import './Header.scss'
