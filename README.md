@@ -56,9 +56,10 @@ Make sure you have the following software installed:
 ## Tech Stack
 
 - React.js: Building user interfaces efficiently.
-- Redux: Managing the application state.
-- Styled Components: Styling components with ease.
+- JWT: Authentication.
+- React-hook-form : Handle forms.
 - Axios: Handling HTTP requests.
+- React-hot-toast: Toast Notifications
 
 ## Contributing
 
