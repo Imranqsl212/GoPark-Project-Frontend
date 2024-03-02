@@ -2,6 +2,8 @@ import  { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/HomePage/Home.jsx";
+import CarsPage from "./pages/CarsPage/CarsPage.jsx";
+import SearchCarPage from "./pages/SearchCarPage/SearchCarPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import Login from "./pages/LoginPage/LoginPage.jsx";
 import useAuthentication from "./additionals/CheckAuth.js";
@@ -25,7 +27,7 @@ function App() {
     <>
       <Header/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SearchCarPage />} />
         <Route path="/reg" element={<RegisterPage />} />
         <Route path="/reg" element={<RegisterPage />} />
         <Route path="/log" element={<Login />} />

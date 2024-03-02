@@ -46,7 +46,9 @@ const OTPVerification = () => {
         <Buttons>  
           <Button title={ isLoading ? `Отправка...` : "Отправить"} disabled={isLoading}/>
           <Links title='Не пришел код?'>
-            <LinkItem to='forgot' name='Отправить повторно' />
+            <LinkItem to='forgot'>
+              Отправить повторно
+            </LinkItem>
           </Links>
         </Buttons>
       </Form>
