@@ -1,13 +1,14 @@
 @import '../../styles/variables.scss';
 
 .header{
+    position: relative;
     display: block;
     padding: 24px;
-    margin-top: 32px;
     background-color: white;
     border-radius: 12px;
     max-width: 1200px;
     margin: 0 auto;
+    z-index: 10;
     &__nav {
         display: flex;
         flex-direction: row;

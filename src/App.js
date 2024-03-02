@@ -2,6 +2,7 @@ import  { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/HomePage/Home.jsx";
+import Map from './components/Map';
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import Login from "./pages/LoginPage/LoginPage.jsx";
 import useAuthentication from "./additionals/CheckAuth.js";
@@ -23,7 +24,7 @@ function App() {
     <>
       <Header/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Map />} />
         <Route path="/reg" element={<RegisterPage />} />
         <Route path="/log" element={<Login />} />
         <Route path="/change" element={<ChangePassword />} />

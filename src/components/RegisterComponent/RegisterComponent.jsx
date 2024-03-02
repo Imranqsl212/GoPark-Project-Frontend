@@ -87,7 +87,9 @@ const Register = () => {
             <Buttons>
               <Button title={isLoading ? "Отправка..." : "Зарегистрироваться"} disabled={isLoading} />
               <Links title='Уже есть аккаунт?'>
-                <LinkItem to="log" name='Войти'/>
+                <LinkItem to="log">
+                  Войти
+                </LinkItem>
               </Links>
             </Buttons>
           </Form>

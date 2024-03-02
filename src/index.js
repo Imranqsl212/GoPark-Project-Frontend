@@ -13,11 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <NotificationProvider>
-      <Conatiner>
-        <NotificationConatiner>
-          <App />
-        </NotificationConatiner>
-      </Conatiner>
+      <div style={{position: 'relative', width: '100%', height: '100vh', minWidth: '360px' }}>
+        <Conatiner>
+          <NotificationConatiner>
+            <App />
+          </NotificationConatiner>
+        </Conatiner>
+      </div>
     </NotificationProvider>
   </BrowserRouter>
 );

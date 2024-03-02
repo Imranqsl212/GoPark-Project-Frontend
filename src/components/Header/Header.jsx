@@ -7,7 +7,6 @@ import useAuthService from '../../services/authService';
 
 import './Header.scss'
 
-
 const Header = () => {
   const { logout } = useAuthService();
 

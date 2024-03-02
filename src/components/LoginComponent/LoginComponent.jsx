@@ -48,8 +48,12 @@ const Login = () => {
         />
         <Buttons>
           <Button title={isLoading ? 'Отправка...' : 'Войти'} disabled={isLoading} />
-          <LinkItem to="forgot" name='Забыли пароль?' styleItem="primary"/>
-          <LinkItem to="reg" name='Регистрация' styleItem="secondary" />
+          <LinkItem to="forgot" styleItem="primary">
+            Забыли пароль? 
+          </LinkItem>
+          <LinkItem to="reg" styleItem="secondary">
+            Регистрация
+          </LinkItem>
         </Buttons>
       </Form>
     </section>

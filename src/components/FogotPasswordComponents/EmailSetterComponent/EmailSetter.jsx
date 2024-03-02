@@ -40,7 +40,9 @@ const EmailSubmission = () => {
         />
         <Buttons>
           <Button title={ isLoading ? 'Отправка...' : "Сбросить пароль?"} disabled={isLoading} />
-          <LinkItem to="log" name='Войти' styleItem="secondary" />
+          <LinkItem to="log" styleItem="secondary">
+            Войти
+          </LinkItem>
         </Buttons>
       </Form>
   </section>
