@@ -1,5 +1,5 @@
 import useAuthService from "../../services/authService.js";
-import homeImg from '../../assets/images/homeImg.png';
+import homeImg from '../../assets/images/poputka.jpg';
 
 import './Home.scss'
 
@@ -11,7 +11,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       {/* <h1>Home</h1>
       <button onClick={logout}>Logout</button> */}
       <div className="home">
@@ -20,13 +20,10 @@ const Home = () => {
             <p className="home__subtitle">Она предоставляет информацию о наличии свободных парковочных мест и помогает найти попутчиков, делая акцент на безопасности и устойчивости.</p>
             <button className="home__btn">Искать попутчика</button>
           </div>
-          <div className="home__img">
-          <img src={homeImg} alt=""/>
-          </div>
+          <img src={homeImg} alt="" className="home__img"/>
       </div>
     </div>
   );
 }
-  
 
 export default Home;

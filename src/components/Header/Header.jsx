@@ -19,6 +19,7 @@ const Header = () => {
         type: "success",
         text: "Logged out successful!",
       });
+      
   
       delay(navigate, "/log", 866);
     };
