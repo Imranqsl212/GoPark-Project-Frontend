@@ -22,6 +22,24 @@ const SearchCar = () => {
                 <Form title='Создание поездки' onSubmit={handleSubmit(onSubmit)} isLogo={false}>
                     <div></div>
                     <Input 
+                        label='Откуда вы выезжаете?'
+                        name="from"
+                        type="text"
+                        required
+                        register={register}
+                        placeholder="ул Исанова"
+                        error={errors.timeFrom}
+                    />
+                    <Input 
+                        label='Куда вы едите?'
+                        name="to"
+                        type="text"
+                        required
+                        register={register}
+                        placeholder="ул Ахунбаева"
+                        error={errors.timeFrom}
+                    />
+                    <Input 
                         label='Время отправления'
                         name="timeFrom"
                         type="text"

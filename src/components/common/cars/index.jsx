@@ -1,10 +1,10 @@
 import carImg from '../../../assets/images/car.svg';
 import pinImg from '../../../assets/images/ic-pin.svg';
-import filterImg from '../../../assets/images/filter-Icon.svg'
+import filterImg from '../../../assets/images/search.svg'
 
 import './cars.scss';
 
-const Cars = () => {
+const Cars = ({for_probki}) => {
     return (
       <section className='car'>
         <div className='car__block'>

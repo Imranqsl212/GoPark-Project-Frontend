@@ -1,47 +1,49 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
-.header{
-    position: relative;
-    display: block;
-    padding: 24px;
-    background-color: white;
-    z-index: 10;
-    max-width: 1200px;
-    margin: 0 auto;
-    border-radius: 12px;
-    &__nav {
-        display: flex;
-        flex-direction: row;
-        gap: 30px;
-        @media (max-width: 768px) {
-            gap: 20px
-        }
+.header {
+  position: relative;
+  display: block;
+  background-color: white;
+  z-index: 10;
+  height: 100px;
+  width: 100%;
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    @media (max-width: 768px) {
+      gap: 20px;
     }
-    &__ul {
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        gap: 30px;
-        @media (max-width: 768px) {
-            gap: 20px
-        }
+  }
+  &__ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px;
+    @media (max-width: 768px) {
+      gap: 20px;
     }
-    &__box {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 30px;
-        align-items: center;
-        justify-content: space-between;
+  }
+  &__box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding: 0 60px;
+  }
+  &__li {
+    &:hover {
+      color: #53d269;
+      cursor: pointer;
+      transition: 0.2s;
     }
-    &__li{
-        &:hover {
-            color: #53D269;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-    }
-    @media (max-width: 640px) {
-        display: none;
-    }
+  }
+  @media (max-width: 640px) {
+    display: none;
+  }
 }

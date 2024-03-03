@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/HomePage/Home.jsx";
@@ -13,8 +13,9 @@ import OTPVerificationPage from "./pages/ForgotPassword/OtpChecker/OTPVerificati
 import PasswordResetPage from "./pages/ForgotPassword/PasswordReseter/PasswordResetPage.jsx";
 import Toolbar from "./components/common/toolbar/Toolbar.jsx";
 import Header from "./components/Header/Header.jsx";
-import About from "./pages/AboutUsPage/AboutUsPage"
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
+import Probki from "./components/Probki/Probki.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   const { checkAuthentication } = useAuthentication();
@@ -25,9 +26,10 @@ function App() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <Routes>
-        <Route path="/" element={<CarsPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/poputka" element={<CarsPage />} />
         <Route path="/reg" element={<RegisterPage />} />
         <Route path="/reg" element={<RegisterPage />} />
         <Route path="/log" element={<Login />} />
@@ -36,7 +38,10 @@ function App() {
         <Route path="/otp" element={<OTPVerificationPage />} />
         <Route path="/reset-password" element={<PasswordResetPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />
+        <Route path="/search" element={<SearchCarPage />} />
+        <Route path="/probki" element={<Probki />} />
       </Routes>
+      <Footer />
       <Toolbar />
     </>
   );
